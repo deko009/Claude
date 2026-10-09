@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAXUS · One Brand, Local Everywhere</title>
+<style>
+/*FONTS*/
+:root{--navy:#070a11;--ink:#0a0a0b;--blue:#1E5FC8;--mute:rgba(255,255,255,.72);--dim:rgba(255,255,255,.45)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:#fff;font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.shot{display:block;width:100%;height:auto}
+.shot-wrap{position:relative;background:#000}
+.story{height:420vh;position:relative}
+.sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--navy)}
+.board{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center}
+canvas#globe{position:absolute;inset:0}
+svg#over{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
+.title{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Michroma,sans-serif;font-size:56px;line-height:1.15;letter-spacing:-.02em}
+.mono{font-family:'Geist Mono',monospace;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.status{position:absolute;left:0;right:0;top:996px;text-align:center;color:var(--dim)}
+.status i{display:inline-block;width:6px;height:6px;background:var(--blue);margin-right:12px;vertical-align:1px;animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.pin{position:absolute;padding:9px 14px 9px 12px;border:1px solid rgba(255,255,255,.22);border-radius:4px;background:rgba(10,10,11,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;align-items:center;gap:10px;white-space:nowrap;color:#fff}
+.pin b{width:6px;height:6px;background:var(--blue)}
+.photo{position:absolute;will-change:transform,opacity}
+.photo img{display:block;width:100%;height:100%;object-fit:cover;border-radius:4px;outline:1px solid rgba(255,255,255,.18);outline-offset:-1px}
+.photo span{position:absolute;left:-6px;top:calc(100% + 8px);padding:4px 6px;border-radius:2px;background:rgba(7,10,17,.72);color:rgba(255,255,255,.7);white-space:nowrap}
+.fadeb{position:absolute;left:0;right:0;bottom:0;height:540px;background:linear-gradient(180deg,rgba(7,10,17,0) 0%,rgba(7,10,17,.86) 55%,#070a11 100%);opacity:0}
+.stats{position:absolute;left:120px;right:120px;bottom:120px;display:flex;opacity:0}
+.stat{flex:1;display:flex;flex-direction:column;gap:12px;padding-left:48px;border-left:1px solid rgba(255,255,255,.16)}
+.stat:first-child{padding-left:0;border-left:0}
+.stat b{font-weight:300;font-size:96px;line-height:1;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.stat em{font-style:normal;font-size:16px;color:var(--mute)}
+.link{position:absolute;right:120px;bottom:226px;font-weight:500;font-size:16px;display:flex;align-items:center;gap:10px;opacity:0;color:#fff;text-decoration:none}
+.link:hover{color:var(--blue)}
+.link svg path{stroke:currentColor}
+/* presenter helper (hidden with ?clean) */
+.steps{position:fixed;right:24px;top:24px;display:flex;gap:18px;z-index:5;color:rgba(255,255,255,.35);opacity:0;transition:opacity .3s;mix-blend-mode:difference}
+.steps.show{opacity:1}
+.steps div{transition:color .3s}.steps div.on{color:#fff}
+.clean .steps{display:none}
+</style>
+</head>
+<body>
+<div class="shot-wrap"><img class="shot" src="IMG_HERO" alt="MAXUS homepage hero"></div>
+
+<section class="story" id="story">
+  <div class="sticky">
+    <div class="board" id="board">
+      <canvas id="globe" width="1920" height="1080"></canvas>
+      <svg id="over" viewBox="0 0 1920 1080"></svg>
+      <div class="title" id="title">One brand. Over 100 countries.</div>
+      <div class="status mono" id="status"><i></i>Locating your market</div>
+      <div class="photo" data-x="200" data-y="220" data-w="340" data-h="440" data-ax="540" data-ay="660"><img src="IMG_LONDON" alt="Delivery in London"><span class="mono">London · UK</span></div>
+      <div class="photo" data-x="1108" data-y="230" data-w="300" data-h="430" data-ax="1108" data-ay="445"><img src="IMG_MANCHESTER" alt="Trades in Manchester"><span class="mono">Manchester · UK</span></div>
+      <div class="photo" data-x="1420" data-y="230" data-w="300" data-h="430" data-ax="1420" data-ay="445"><img src="IMG_EDINBURGH" alt="Florist in Edinburgh"><span class="mono">Edinburgh · UK</span></div>
+      <div class="photo" data-x="260" data-y="780" data-w="360" data-h="220" data-ax="620" data-ay="890"><img src="IMG_BIRMINGHAM" alt="Chauffeur in Birmingham"><span class="mono">Birmingham · UK</span></div>
+      <div class="pin mono" id="pin"><b></b>Your market · United Kingdom</div>
+      <div class="fadeb" id="fadeb"></div>
+      <div class="stats" id="stats">
+        <div class="stat"><b data-to="1896" data-from="1800">1896</b><em>British commercial-vehicle roots</em></div>
+        <div class="stat"><b data-to="100" data-suffix="+">100+</b><em>Countries and regions</em></div>
+        <div class="stat"><b data-to="1.2" data-suffix="M+" data-dec="1">1.2M+</b><em>Customers worldwide</em></div>
+      </div>
+      <a class="link" id="link" href="#">Our Story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="shot-wrap"><img class="shot" src="IMG_VEHICLES" alt="MAXUS vehicles section"></div>
+
+<div class="steps mono" id="steps"><div>01 Locating</div><div>02 Your market</div><div>03 By the numbers</div></div>
+
+<script>
+if (/[?&]clean/.test(location.search)) document.documentElement.classList.add('clean');
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DOTS = DOTS_JSON;
+const D2R = Math.PI / 180, NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+const board = $('board'), ctx = $('globe').getContext('2d'), over = $('over');
+const photos = [...document.querySelectorAll('.photo')].map(el => ({ el, ...Object.fromEntries(['x','y','w','h','ax','ay'].map(k => [k, +el.dataset[k]])) }));
+photos.forEach(p => Object.assign(p.el.style, { left: p.x + 'px', top: p.y + 'px', width: p.w + 'px', height: p.h + 'px' }));
+const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); over.appendChild(e); return e; };
+const lines = photos.map(() => mk('line', { stroke: 'rgba(255,255,255,.24)', 'stroke-width': 1 }));
+const rings = [64, 128].map(d => ({ d, c: mk('circle', { fill: 'none', stroke: '#1E5FC8', 'stroke-width': 1.5 }) }));
+const pinSq = mk('rect', { width: 14, height: 14, fill: 'none', stroke: '#fff', 'stroke-width': 1.5 });
+const pinDot = mk('rect', { width: 4, height: 4, fill: '#fff' });
+const pinEl = $('pin'), statEls = [...document.querySelectorAll('.stat b')], steps = [...document.querySelectorAll('#steps div')];
+
+function fit() { const s = Math.min(innerWidth / 1920, innerHeight / 1080); board.style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = t => 1 - Math.pow(1 - t, 3);
+const easeIO = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const lerp = (a, b, t) => a + (b - a) * t;
+
+const UK = { lon: -1.5, lat: 52.5 }, TARGET = { lam: 1.5, phi: 27 };
+let autoLam = -40, last = performance.now(), countStart = null;
+
+function project(lon, lat, lam, phi, cx, cy, R) {
+  const l = (lon + lam) * D2R, b = lat * D2R, f = phi * D2R;
+  const x = Math.cos(b) * Math.sin(l), y = Math.sin(b), z = Math.cos(b) * Math.cos(l);
+  return [cx + R * x, cy - R * (y * Math.cos(f) - z * Math.sin(f)), y * Math.sin(f) + z * Math.cos(f)];
+}
+function drawGlobe(cx, cy, R, lam, phi) {
+  ctx.clearRect(0, 0, 1920, 1080);
+  const glow = ctx.createRadialGradient(cx, cy, R * .9, cx, cy, R * 1.2);
+  glow.addColorStop(0, 'rgba(31,107,198,.30)'); glow.addColorStop(1, 'rgba(31,107,198,0)');
+  ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, R * 1.2, 0, 7); ctx.fill();
+  const sph = ctx.createRadialGradient(cx + R * .18, cy + R * .35, R * .05, cx, cy, R);
+  sph.addColorStop(0, '#2a63b8'); sph.addColorStop(.55, '#123266'); sph.addColorStop(1, '#0a1a38');
+  ctx.fillStyle = sph; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fill();
+  ctx.fillStyle = '#61f2ad';
+  for (const [lon, lat] of DOTS) {
+    const [x, y, z] = project(lon, lat, lam, phi, cx, cy, R);
+    if (z <= 0) continue;
+    ctx.globalAlpha = .25 + .75 * z; ctx.fillRect(x - 1.3, y - 1.3, 2.6, 2.6);
+  }
+  ctx.globalAlpha = 1; ctx.strokeStyle = 'rgba(255,255,255,.14)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
+}
+function progress() { const r = $('story').getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); }
+
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  const p = progress();
+  const tTurn = easeIO(seg(p, .05, .26)), tPhoto = seg(p, .24, .48), tOut = ease(seg(p, .58, .72)), tData = ease(seg(p, .64, .80));
+  if (tTurn < 1 && !REDUCED) autoLam += dt * 12 * (1 - tTurn);
+  const lam = lerp(autoLam, TARGET.lam + 360 * Math.round((autoLam - TARGET.lam) / 360), tTurn);
+  const phi = lerp(18, TARGET.phi, tTurn), cx = 960, cy = lerp(600, 830, tTurn) - 170 * tOut, R = 410;
+  drawGlobe(cx, cy, R, lam, phi);
+  const [px, py, pz] = project(UK.lon, UK.lat, lam, phi, cx, cy, R);
+  const pinA = (pz > 0 ? 1 : 0) * clamp(tTurn * 1.4 - .4);
+  pinSq.setAttribute('x', px - 7); pinSq.setAttribute('y', py - 7); pinSq.style.opacity = pinA;
+  pinDot.setAttribute('x', px - 2); pinDot.setAttribute('y', py - 2); pinDot.style.opacity = pinA;
+  pinEl.style.left = (px - 30) + 'px'; pinEl.style.top = (py + 30) + 'px'; pinEl.style.transform = 'translateX(-100%)'; pinEl.style.opacity = pinA;
+  const pulse = REDUCED ? .3 : (now / 1800) % 1;
+  rings.forEach((r, i) => { const k = (pulse + i * .5) % 1; r.c.setAttribute('cx', px); r.c.setAttribute('cy', py); r.c.setAttribute('r', r.d / 2 * (.55 + .6 * k)); r.c.style.opacity = pinA * (1 - k) * .8; });
+  photos.forEach((ph, i) => {
+    const t = ease(seg(tPhoto, i * .18, i * .18 + .46));
+    const dx = ph.x + ph.w / 2 - px, dy = ph.y + ph.h / 2 - py, s = lerp(.6, 1, t) * (1 + .08 * tOut);
+    ph.el.style.opacity = t * (1 - tOut);
+    ph.el.style.transform = `translate(${lerp(-dx * .35, 0, t) + dx * .15 * tOut}px,${lerp(-dy * .35, 0, t) + dy * .15 * tOut}px) scale(${s})`;
+    const l = lines[i], len = Math.hypot(ph.ax - px, ph.ay - py);
+    l.setAttribute('x1', px); l.setAttribute('y1', py); l.setAttribute('x2', ph.ax); l.setAttribute('y2', ph.ay);
+    l.style.strokeDasharray = len; l.style.strokeDashoffset = len * (1 - t); l.style.opacity = 1 - tOut;
+  });
+  $('status').style.opacity = 1 - seg(p, .06, .12);
+  $('fadeb').style.opacity = tData;
+  const st = $('stats'); st.style.opacity = tData; st.style.transform = `translateY(${40 * (1 - tData)}px)`;
+  const lk = $('link'); lk.style.opacity = tData; lk.style.transform = `translateY(${40 * (1 - tData)}px)`;
+  if (p > .72 && countStart === null) countStart = REDUCED ? -1e9 : now;
+  if (p < .55) countStart = null;
+  statEls.forEach((b, i) => {
+    const to = +b.dataset.to, from = +(b.dataset.from || 0), dec = +(b.dataset.dec || 0);
+    const t = countStart === null ? 0 : ease(clamp((now - countStart - i * 120) / 1400));
+    b.textContent = (from + (to - from) * t).toFixed(dec) + (b.dataset.suffix || '');
+  });
+  const s = p < .08 ? 0 : p < .62 ? 1 : 2;
+  steps.forEach((d, i) => d.classList.toggle('on', i === s));
+  $('steps').classList.toggle('show', p > .001 && p < .999);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
