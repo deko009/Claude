@@ -5,7 +5,7 @@ const { applyTheme } = require('/root/.claude/skills/synced/d732b448-7cde-41a0-9
 const IMG = f => path.join(__dirname, 'img', f);
 const THEME = {
   name: 'MAXUS Homepage UI',
-  headFontFace: 'Arial', bodyFontFace: 'Arial',
+  headFontFace: 'PingFang SC', bodyFontFace: 'PingFang SC',
   colors: { dk1: '0A0A0B', lt1: 'FFFFFF', dk2: '5A5F68', lt2: 'F1F1F0',
     accent1: '1E5FC8', accent2: '6E9BF0', accent3: '8A8F98', accent4: '070A11',
     accent5: '1F6BC6', accent6: '61F2AD', hlink: '6E9BF0', folHlink: '8A8F98' },
@@ -15,7 +15,7 @@ const BG = '1A1B1F', CARD = '222328', SIG = '3D6BFF', MUTE = 'A3A7AE';
 
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_WIDE'; // 13.33 x 7.5
-pres.theme = { headFontFace: 'Arial', bodyFontFace: 'Arial' };
+pres.theme = { headFontFace: 'PingFang SC', bodyFontFace: 'PingFang SC' };
 pres.title = 'MAXUS 官网首页 Web UI 设计解说';
 pres.author = 'MAXUS Web Design';
 
@@ -36,11 +36,11 @@ function slide(master, sec) {
   if (sec && sec !== section) { pres.addSection({ title: sec }); section = sec; }
   return pres.addSlide({ masterName: master, sectionTitle: section });
 }
-function txt(s, text, o) { s.addText(text, Object.assign({ isTextBox: true, margin: 0, fontFace: 'Arial', valign: 'top' }, o)); }
+function txt(s, text, o) { s.addText(text, Object.assign({ isTextBox: true, margin: 0, fontFace: 'PingFang SC', valign: 'top' }, o)); }
 function header(s, eyebrow, title) {
   const i = title.indexOf('：');
   const runs = i > 0 ? [{ text: title.slice(0, i), options: { color: SIG } }, { text: '  ' + title.slice(i + 1), options: { color: WHITE } }] : [{ text: title, options: { color: WHITE } }];
-  s.addText(runs, { x: MX, y: 0.42, w: W - 2 * MX, h: 0.62, fontSize: 28, bold: true, fontFace: 'Arial', margin: 0, valign: 'bottom', isTextBox: true });
+  s.addText(runs, { x: MX, y: 0.42, w: W - 2 * MX, h: 0.62, fontSize: 28, bold: true, fontFace: 'PingFang SC', margin: 0, valign: 'bottom', isTextBox: true });
   s.addShape(pres.shapes.LINE, { x: MX, y: 1.12, w: W - 2 * MX, h: 0, line: { color: LINE_D, width: 0.75 } });
   txt(s, eyebrow.replace(/^\S+\s+\/\s+/, ''), { x: MX, y: 1.2, w: 9, h: 0.22, fontSize: 9, color: G4, charSpacing: 2 });
 }
@@ -126,7 +126,7 @@ function signature(s, y) {
     txt(s, t, { x: x + 0.35, y: 2.8, w: cw - 0.7, h: 0.4, fontSize: 18, bold: true, color: WHITE });
     s.addShape(pres.shapes.LINE, { x: x + 0.35, y: 3.35, w: cw - 0.7, h: 0, line: { color: LINE_D, width: 0.75 } });
     s.addText(items.map((it, k) => ({ text: it, options: { bullet: { indent: 14 }, breakLine: k < items.length - 1 } })),
-      { x: x + 0.35, y: 3.5, w: cw - 0.7, h: 2.9, fontSize: 13, color: 'C9CCD1', paraSpaceAfter: 9, valign: 'top', margin: 0, isTextBox: true, fontFace: 'Arial' });
+      { x: x + 0.35, y: 3.5, w: cw - 0.7, h: 2.9, fontSize: 13, color: 'C9CCD1', paraSpaceAfter: 9, valign: 'top', margin: 0, isTextBox: true, fontFace: 'PingFang SC' });
   });
   s.addNotes('客户最认可的一句话是：“这是按你们自己定的方向做的。”所以每一页的理由都标注了出处：品牌方案、会议纪要、受众定位。');
 }
@@ -242,8 +242,8 @@ function typeTable(title, eyebrow, rows, note) {
   const s = slide('DARK', '设计系统');
   header(s, eyebrow, title);
   const hdr = ['层级', '字体', '字号 / 行高 / 字距', '用在哪里', '为什么是这个数'];
-  const opts = { fontFace: 'Arial', fontSize: 10, color: MUTE, bold: false, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.75, color: LINE_D }, { type: 'none' }], margin: [4, 6, 6, 0], valign: 'bottom' };
-  const body = rows.map(r => r.map((c, i) => ({ text: c, options: { fontFace: 'Arial', fontSize: i === 4 ? 11.5 : 12, color: i === 0 ? WHITE : (i === 4 ? 'D5D7DB' : G6), bold: i === 0, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.5, color: '2C2D32' }, { type: 'none' }], margin: [9, 8, 9, 0], valign: 'middle' } })));
+  const opts = { fontFace: 'PingFang SC', fontSize: 10, color: MUTE, bold: false, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.75, color: LINE_D }, { type: 'none' }], margin: [4, 6, 6, 0], valign: 'bottom' };
+  const body = rows.map(r => r.map((c, i) => ({ text: c, options: { fontFace: 'PingFang SC', fontSize: i === 4 ? 11.5 : 12, color: i === 0 ? WHITE : (i === 4 ? 'D5D7DB' : 'B4B7BD'), bold: i === 0, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.5, color: '2C2D32' }, { type: 'none' }], margin: [9, 8, 9, 0], valign: 'middle' } })));
   s.addTable([hdr.map(h => ({ text: h, options: opts })), ...body], { x: MX, y: 1.6, w: W - 2 * MX, colW: [1.25, 1.75, 1.75, 2.3, 5.08] });
   if (note) txt(s, note, { x: MX, y: 6.35, w: W - 2 * MX, h: 0.5, fontSize: 11, color: MUTE });
   return s;
@@ -330,7 +330,7 @@ typeTable('正文字号：为什么导航 18、正文 20', '01  /  TYPE SCALE ·
   txt(s, '140', { x: px + pw / 2 - 0.4, y: py + 0.03, w: 0.8, h: 0.2, fontSize: 8, color: 'E0A060', align: 'center' });
   // table
   const rows = [['页面左右边距', '120', '1920 屏上内容宽 1680，左右各留 6%，画面有“画册”的边'], ['板块上下', '140', '屏与屏之间的停顿，像翻页'], ['标题组 → 内容', '80', '先读标题，再看内容的节奏'], ['导语 → 文字链接', '32', '链接紧跟导语，读完就能点'], ['眉标 → 标题 → 导语', '24', '同一组信息，靠近才是一组'], ['卡片间距', '12', '卡片成组，不散'], ['文字 → 箭头', '10', '箭头属于文字，不是独立按钮']];
-  const opts = (b, c) => ({ fontFace: 'Arial', fontSize: 10.5, color: c, bold: b, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.5, color: '2C2D32' }, { type: 'none' }], margin: [5, 4, 5, 0], valign: 'middle' });
+  const opts = (b, c) => ({ fontFace: 'PingFang SC', fontSize: 10.5, color: c, bold: b, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.5, color: '2C2D32' }, { type: 'none' }], margin: [5, 4, 5, 0], valign: 'middle' });
   s.addTable(rows.map(r => [{ text: r[0], options: opts(true, INK) }, { text: r[1], options: opts(false, BLUE) }, { text: r[2], options: opts(false, G6) }]), { x: 7.35, y: 1.65, w: 5.4, colW: [1.55, 0.55, 3.3] });
   txt(s, '全部为 8 的倍数（或 4 的细分）：开发可以直接写成变量，各国站复用时不会走样。', { x: 7.35, y: 5.9, w: 5.4, h: 0.5, fontSize: 10.5, color: MUTE, lineSpacingMultiple: 1.2 });
   s.addNotes('“为什么这里空这么多？”——留白是奢侈品官网的核心手法（会议要求参考）。所有间距用同一把尺子，每一屏呼吸感一致，整页看下来稳；开发也能直接变量化。');
@@ -393,7 +393,7 @@ function screenSlide(sec, eyebrow, title, file, fw, fh, pts, items, note, opt = 
 }
 
 screenSlide('逐屏解说', '02  /  01  HERO', '首屏：一句标题 + 三条品牌信息', 'hero.jpg', 1920, 1128,
-  [[1, 330, 920], [2, 150, 1000], [3, 900, 1010], [4, 1660, 1000], [5, 1500, 400]],
+  [[1, 200, 920], [2, 150, 1000], [3, 900, 1010], [4, 1660, 1000], [5, 1500, 400]],
   [[1, '主标题 · Display L 72', '全页只有这里用 72。一行居中，放在画面下方，上方留给车。'],
    [2, 'EUROPEAN-BORN', '来自品牌定位：European-born commercial vehicle brand。'],
    [3, '一句话产品线 · Body M 20', '一句话说明产品线：从轻客、皮卡到重卡，纯电、混动、柴油都有。来自品牌方案的标准介绍。'],
@@ -556,3 +556,20 @@ screenSlide('逐屏解说', '02  /  09  FOOTER', '页脚：只放直达链接', 
   await applyTheme(out, THEME);
   console.log('ok', out);
 })();
+
+// patch theme East Asian fonts (pptxgenjs leaves them empty)
+process.on('beforeExit', () => {
+  if (global.__patched) return; global.__patched = true;
+  const { execFileSync } = require('child_process');
+  execFileSync('python3', ['-c', `
+import zipfile,shutil,sys
+f=sys.argv[1]; t=f+'.tmp'
+zin=zipfile.ZipFile(f); zout=zipfile.ZipFile(t,'w',zipfile.ZIP_DEFLATED)
+for i in zin.infolist():
+    d=zin.read(i.filename)
+    if i.filename.startswith('ppt/theme/'):
+        d=d.replace(b'<a:ea typeface=""',b'<a:ea typeface="PingFang SC"')
+    zout.writestr(i,d)
+zout.close(); shutil.move(t,f)`, path.join(__dirname, 'MAXUS_首页WebUI_设计解说.pptx')]);
+  console.log('theme fonts patched');
+});
