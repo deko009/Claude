@@ -14,7 +14,7 @@ const css = `
 @import url('file://${FONT}/noto-sans-sc/300.css');
 @import url('file://${FONT}/noto-sans-sc/400.css');
 @import url('file://${FONT}/noto-sans-sc/500.css');
-:root{--bg:#0C0D0F;--fg:#F3F3F1;--mute:rgba(243,243,241,.64);--dim:rgba(243,243,241,.38);--line:rgba(255,255,255,.12);--blue:#5B87FF;--card:#141518}
+:root{--bg:#0C0D0F;--fg:#F3F3F1;--mute:rgba(243,243,241,.64);--dim:rgba(243,243,241,.38);--line:rgba(255,255,255,.12);--blue:#1E5FC8;--card:#141518}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000}
 .s{text-spacing-trim:space-all;font-feature-settings:normal;width:1920px;height:1080px;position:relative;overflow:hidden;background:var(--bg);color:var(--fg);font-family:'Geist Sans','Noto Sans SC',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
@@ -99,7 +99,7 @@ S('Contents', `
 <div style="position:absolute;left:120px;top:200px;font-size:88px;font-weight:300">目录</div>
 <div class="disp" style="position:absolute;left:124px;top:330px;font-size:18px;color:var(--dim)">Contents</div>
 <img src="${IMG('mark_gray.png')}" style="position:absolute;left:-60px;bottom:-80px;width:620px;opacity:.55">
-${[['00', '设计依据', 'Basis · References · Principles'], ['01', '设计系统', 'Typography · Color · Spacing · Hover'], ['02', '逐屏说明', 'Screen by Screen'], ['03', '动效与问答', 'Motion · Q&A · Next Steps']].map(([n, t, e], i) => `
+${[['00', '设计依据', 'Basis · References · Principles'], ['01', '设计系统', 'Typography · Color · Spacing · Hover'], ['02', '逐屏说明', 'Screen by Screen'], ['03', '动效与待确认', 'Motion · Next Steps']].map(([n, t, e], i) => `
 <div style="position:absolute;left:860px;right:120px;top:${200 + i * 170}px;height:170px;border-top:1px solid var(--line);display:flex;align-items:center">
   <div style="font-size:96px;font-weight:200;color:rgba(255,255,255,.28);width:240px;letter-spacing:-.02em">${n}</div>
   <div style="flex:1;text-align:right"><div style="font-size:36px;font-weight:400">${t}</div><div class="mono" style="font-size:13px;color:var(--dim);margin-top:12px">${e}</div></div>
@@ -249,8 +249,8 @@ scale('正文字号：<b>为什么导航 18、正文 20</b>', '01 — Type Scale
 
 // ─────────────── COLOR
 {
-  const chips = [['Ink', '#0A0A0B', '主文字'], ['White', '#FFFFFF', '深底文字'], ['Gray 600', '#5A5F68', '说明文字'], ['Gray 400', '#8A8F98', '日期 / 标签'], ['Surface', '#F1F1F0', '浅色区块'], ['Navy', '#070A11', '全球板块底'], ['Brand Blue', '#1E5FC8', '浅底悬停'], ['Blue Light', '#6E9BF0', '深底悬停'], ['Globe Ocean', '#1F6BC6', '仅地球'], ['Globe Land', '#61F2AD', '仅地球']];
-  const cw = (1680 - 9 * 12) / 10;
+  const chips = [['Ink', '#0A0A0B', '主文字'], ['White', '#FFFFFF', '深底文字'], ['Gray 600', '#5A5F68', '说明文字'], ['Gray 400', '#8A8F98', '日期 / 标签'], ['Surface', '#F1F1F0', '浅色区块'], ['Navy', '#070A11', '全球板块底'], ['Brand Blue', '#1E5FC8', '悬停 / 选中'], ['Globe Ocean', '#1F6BC6', '仅地球'], ['Globe Land', '#61F2AD', '仅地球']];
+  const cw = (1680 - 8 * 12) / 9;
   S('01 — Color', `${head('01 — Color', '颜色：<b>黑白为主，蓝色只用在悬停</b>')}
 ${chips.map(([n, h, u], i) => `<div style="position:absolute;left:${120 + i * (cw + 12)}px;top:320px;width:${cw}px">
   <div style="height:300px;background:${h};outline:1px solid rgba(255,255,255,.1)"></div>
@@ -259,7 +259,7 @@ ${chips.map(([n, h, u], i) => `<div style="position:absolute;left:${120 + i * (c
 <div class="mono" style="position:absolute;left:120px;top:290px;font-size:12px;color:var(--dim)">Core · Neutral</div>
 <div class="mono" style="position:absolute;left:${120 + 6 * (cw + 12)}px;top:290px;font-size:12px;color:var(--dim)">Accent · Data</div>
 <div class="cols" style="top:790px;grid-template-columns:repeat(3,1fr);gap:64px">
-${[['黑白是主色', '品牌方案：黑白核心色在不同文化里都传达信任、清晰、权威。'], ['蓝色只在悬停时出现', '方案里蓝色是“一抹点缀，代表电动”。用户把鼠标移上去时才亮起；深色背景上用浅一档的蓝，保证看得清。'], ['不做蓝色按钮', '蓝色按钮是很多车企和 B2B 网站的常规做法，用了反而显得普通。']].map(([t, d]) => `<div style="border-top:1px solid rgba(255,255,255,.3);padding-top:20px"><div style="font-size:21px;font-weight:400">${t}</div><div style="font-size:16px;color:var(--mute);line-height:1.65;margin-top:10px">${d}</div></div>`).join('')}</div>`,
+${[['黑白是主色', '品牌方案：黑白核心色在不同文化里都传达信任、清晰、权威。'], ['蓝色只在悬停时出现', '方案里蓝色是“一抹点缀，代表电动”。用户把鼠标移上去时才亮起，全站统一用 #1E5FC8。'], ['不做蓝色按钮', '蓝色按钮是很多车企和 B2B 网站的常规做法，用了反而显得普通。']].map(([t, d]) => `<div style="border-top:1px solid rgba(255,255,255,.3);padding-top:20px"><div style="font-size:21px;font-weight:400">${t}</div><div style="font-size:16px;color:var(--mute);line-height:1.65;margin-top:10px">${d}</div></div>`).join('')}</div>`,
     '“为什么不用我们的蓝色？”——品牌方案把核心色定为黑白，蓝色是一抹点缀。我们把蓝色用在用户悬停、聚焦的时候。地球的蓝绿色属于数据图形，只在地球上出现。');
 }
 
@@ -277,8 +277,8 @@ ${[['黑白是主色', '品牌方案：黑白核心色在不同文化里都传�
   });
   S('01 — Spacing', `${head('01 — Spacing', '间距：<b>全部用 8 的倍数</b>')}
 <div style="position:absolute;left:${L}px;top:${T}px;width:${PW}px;height:${PH}px;background:var(--card);outline:1px solid var(--line)"></div>
-<div style="position:absolute;left:${L}px;top:${T}px;width:${m}px;height:${PH}px;background:rgba(91,135,255,.12)"></div>
-<div style="position:absolute;left:${L + PW - m}px;top:${T}px;width:${m}px;height:${PH}px;background:rgba(91,135,255,.12)"></div>
+<div style="position:absolute;left:${L}px;top:${T}px;width:${m}px;height:${PH}px;background:rgba(30,95,200,.12)"></div>
+<div style="position:absolute;left:${L + PW - m}px;top:${T}px;width:${m}px;height:${PH}px;background:rgba(30,95,200,.12)"></div>
 <div style="position:absolute;left:${L}px;top:${T}px;width:${PW}px;height:${140 * sc}px;background:rgba(255,180,100,.1)"></div>
 <div class="mono" style="position:absolute;left:${L}px;top:${T + PH + 12}px;width:${m}px;text-align:center;font-size:11px;color:var(--blue)">120</div>
 <div class="mono" style="position:absolute;left:${L + PW / 2 - 20}px;top:${T + 14}px;font-size:11px;color:#E0A060">140</div>
@@ -296,12 +296,12 @@ ${[['页面左右边距', '120', '1920 屏上内容宽 1680，左右各留约 6%
   const arrow = c => `<svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align:-2px;margin-left:10px"><path d="M3 8h10M9 4l4 4-4 4" stroke="${c}" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const pair = (label, a, b, bg) => `<div style="background:${bg};padding:34px 36px;outline:1px solid var(--line)"><div class="mono" style="font-size:12px;color:${bg === '#F1F1F0' ? '#5A5F68' : 'var(--dim)'};margin-bottom:26px">${label}</div><div style="display:flex;gap:56px;align-items:flex-end">${a}${b}</div></div>`;
   const tag = (t, c) => `<div class="mono" style="font-size:11px;color:${c};margin-top:14px">${t}</div>`;
-  S('01 — Hover', `${head('01 — Interaction', '悬停效果：<b>只变颜色</b>', '悬停时不加底色、不加粗。浅色背景用 #1E5FC8，深色背景用 #6E9BF0。颜色过渡 200ms；图片放大 400ms。')}
+  S('01 — Hover', `${head('01 — Interaction', '悬停效果：<b>只变颜色</b>', '悬停时不加底色、不加粗，全站统一用品牌蓝 #1E5FC8。颜色过渡 200ms；图片放大 400ms。')}
 <div style="position:absolute;left:120px;right:120px;top:410px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
 ${pair('Text link · Light', `<div><div style="font-size:18px;font-weight:500;color:#0A0A0B">Our Story${arrow('#0A0A0B')}</div>${tag('Default', '#8A8F98')}</div>`, `<div><div style="font-size:18px;font-weight:500;color:#1E5FC8">Our Story<span style="margin-left:4px"></span>${arrow('#1E5FC8')}</div>${tag('Hover · 箭头右移 4px', '#1E5FC8')}</div>`, '#F1F1F0')}
-${pair('Navigation · Dark', `<div><div style="font-size:18px;font-weight:400">Vehicles</div><div style="height:2px;margin-top:10px"></div>${tag('Default', 'var(--dim)')}</div>`, `<div><div style="font-size:18px;font-weight:400;color:#6E9BF0">Vehicles</div><div style="height:2px;background:#6E9BF0;margin-top:10px"></div>${tag('Hover · 2px 下划线', '#6E9BF0')}</div>`, '#0A0A0B')}
+${pair('Navigation · Dark', `<div><div style="font-size:18px;font-weight:400">Vehicles</div><div style="height:2px;margin-top:10px"></div>${tag('Default', 'var(--dim)')}</div>`, `<div><div style="font-size:18px;font-weight:400;color:#1E5FC8">Vehicles</div><div style="height:2px;background:#1E5FC8;margin-top:10px"></div>${tag('Hover · 2px 下划线', '#1E5FC8')}</div>`, '#0A0A0B')}
 ${pair('Vehicle tab · Light', `<div><div style="font-size:18px;color:#5A5F68">Pickups</div><div style="height:2px;margin-top:10px"></div>${tag('Default', '#8A8F98')}</div><div><div style="font-size:18px;color:#1E5FC8">Pickups</div><div style="height:2px;margin-top:10px"></div>${tag('Hover', '#1E5FC8')}</div>`, `<div><div style="font-size:18px;color:#0A0A0B;font-weight:500">Pickups</div><div style="height:2px;background:#0A0A0B;margin-top:10px"></div>${tag('Selected', '#0A0A0B')}</div>`, '#F1F1F0')}
-${pair('Social · Play · Dark', `<div style="display:flex;gap:28px;align-items:center"><div style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22)"></div><div style="width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.06)"></div></div>`, `<div style="display:flex;gap:28px;align-items:center"><div style="width:44px;height:44px;border-radius:50%;border:1px solid #6E9BF0"></div><div style="width:72px;height:72px;border-radius:50%;border:1px solid #6E9BF0;background:rgba(255,255,255,.06)"></div><div class="mono" style="font-size:11px;color:#6E9BF0">Hover · 描边变蓝</div></div>`, '#0A0A0B')}
+${pair('Social · Play · Dark', `<div style="display:flex;gap:28px;align-items:center"><div style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22)"></div><div style="width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.06)"></div></div>`, `<div style="display:flex;gap:28px;align-items:center"><div style="width:44px;height:44px;border-radius:50%;border:1px solid #1E5FC8"></div><div style="width:72px;height:72px;border-radius:50%;border:1px solid #1E5FC8;background:rgba(255,255,255,.06)"></div><div class="mono" style="font-size:11px;color:#1E5FC8">Hover · 描边变蓝</div></div>`, '#0A0A0B')}
 </div>
 <div style="position:absolute;left:120px;top:900px;font-size:15px;color:var(--dim)">依据：会议纪要“参考奔驰的按钮悬停反馈”。Figma 中已建可交互组件“MAXUS / 文字链接（含 Hover）”。</div>`,
     '悬停只改颜色，不加底色、不加粗，反馈清楚但不破坏版面。蓝色只在用户触碰时出现，对应品牌方案里“一抹亮蓝代表电动”。');
@@ -404,13 +404,6 @@ ${[['globe0.jpg', '01', '地球自转', '进入板块，地球约 20 秒转一�
 <div class="rule" style="top:880px"></div>
 <div style="position:absolute;left:120px;top:904px;font-size:16px;color:var(--dim)">已有可在浏览器运行的 HTML 原型（maxus-global-local.html），开发可直接参考。IP 识别失败时默认显示 Europe / United Kingdom。</div>`,
   '演示时可直接打开 HTML 原型滚动给客户看。数字只计数一次，避免停在中间值。');
-
-// ─────────────── Q&A
-S('03 — Q&A', `${head('03 — Q & A', '客户可能会问的问题')}
-<div class="cols" style="top:300px;grid-template-columns:1fr 1fr;gap:0 96px">
-${[['标题为什么不加粗？', 'Michroma 只有 Regular；字形宽，不加粗也醒目。Volvo 官网规范的标题也是 Regular。'], ['导航为什么是 18？', '原 16 在大屏偏小；18 好看清，又不加粗，不抢首屏视频。'], ['正文为什么统一 20？', 'Volvo 规范里正文有 16 / 20 / 24 三档；大屏取 20，行高 1.5 也符合 WCAG。'], ['为什么不用我们的蓝色？', '方案定黑白为核心，蓝色是点缀；我们只在悬停时用蓝色。'], ['为什么按钮这么少？', '首页负责品牌展示，不堆按钮；只有订阅保留实心按钮。'], ['数字为什么这么大？', '这是最有说服力的信息；细体让它大而不重。'], ['是不是别人也这么做？', '是。奔驰统一设计语言、丰田和 Volvo 全站一套主字体、多家车企标识扁平化（见对标页）。'], ['图片和视频能直接用吗？', '部分是 AI 示意图，首屏视频的车也需换成 MAXUS 实拍。']].map(([q, a]) => `
-<div style="border-top:1px solid var(--line);padding:24px 0 26px;display:flex;gap:28px"><div class="mono" style="font-size:13px;color:var(--blue);padding-top:5px">Q</div><div><div style="font-size:21px;font-weight:400">${q}</div><div style="font-size:16px;color:var(--mute);line-height:1.6;margin-top:8px">${a}</div></div></div>`).join('')}</div>`,
-  '如果客户坚持用蓝色：可以只用在一处关键动作上（例如订阅按钮），不建议做成大面积按钮或底色。');
 
 // ─────────────── NEXT
 S('03 — Next Steps', `${head('03 — Next Steps', '待确认：<b>上线前需要贵司提供的内容</b>')}

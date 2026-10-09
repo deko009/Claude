@@ -1,2 +1,4 @@
 .claude/settings.local.json
 deck/v2/deck.html
+deck/v2/bg/
+deck/v2/used_chars.json
