@@ -9,7 +9,7 @@
 :root{
   --ink:#0A0A0B;--white:#fff;--g600:#5A5F68;--g400:#8A8F98;--surf:#F1F1F0;--navy:#070A11;--dark:#0C0D0F;--blue:#1E5FC8;
   --line:rgba(10,10,11,.12);--line-d:rgba(255,255,255,.14);
-  --side:clamp(20px,6.25vw,120px);--sec:clamp(80px,7.3vw,140px);
+  --side:clamp(20px,6.25vw,120px);--sec:clamp(64px,5.2vw,100px);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -77,10 +77,51 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 
 /* hero */
 .hero{position:relative;height:100vh;min-height:760px;overflow:hidden;background:var(--navy);color:#fff}
-.hero .bg{position:absolute;inset:0;background:center 58%/cover no-repeat;transform:scale(1.08);transition:transform 2.6s var(--ease)}
+.hero .bg{position:absolute;inset:0;background:center top/cover no-repeat;transform:scale(1.08);transition:transform 2.6s var(--ease)}
 .hero.ld .bg{transform:scale(1)}
-.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,10,17,.55) 0%,rgba(7,10,17,.18) 40%,rgba(7,10,17,0) 60%),linear-gradient(90deg,rgba(7,10,17,.45) 0%,rgba(7,10,17,0) 45%),linear-gradient(0deg,rgba(7,10,17,.35) 0%,rgba(7,10,17,0) 20%)}
-.hero .ct{position:absolute;z-index:2;left:var(--side);right:var(--side);top:clamp(140px,16vh,200px)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,10,17,.8) 0%,rgba(7,10,17,.5) 24%,rgba(7,10,17,.12) 36%,rgba(7,10,17,0) 46%),linear-gradient(0deg,rgba(7,10,17,.85) 0%,rgba(7,10,17,.4) 16%,rgba(7,10,17,0) 32%)}
+.hero .ct{position:absolute;z-index:2;left:var(--side);right:var(--side);top:92px;text-align:center}
+.hero .display{font-size:clamp(48px,4.6vw,88px)}
+.hero .bg{bottom:-24%}
+.hero .sl{margin:8px auto 0}
+.hero .eyebrow{margin-bottom:8px}
+.hero .links{justify-content:center;margin-top:20px;gap:48px}
+.hero .cap{position:absolute;z-index:2;left:var(--side);bottom:28px;font-size:13px;color:rgba(255,255,255,.5)}
+.ovw{position:relative;height:min(62vw,1180px);min-height:720px;overflow:hidden;background:#B5B8BD;text-align:center}
+.ovw .bgv{position:absolute;inset:0;background:center 30%/cover no-repeat;opacity:0;transition:opacity .6s var(--ease)}
+.ovw .bgv.on{opacity:1}
+.ovw .h2{position:relative;z-index:1;padding-top:clamp(48px,5vw,96px)}
+.vtabs{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;gap:28px;margin-top:40px}
+.pill{display:flex;padding:4px;border-radius:28px;background:rgba(255,255,255,.72);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.pill button{padding:14px 48px;border-radius:24px;font-weight:500;font-size:17px;transition:background .3s,color .3s}
+.pill button.on{background:var(--ink);color:#fff}
+.pill button:not(.on):hover{color:var(--blue)}
+.cmp{font-weight:500;font-size:17px;color:var(--g600);text-decoration:underline;text-underline-offset:4px}
+.cmp:hover{color:var(--blue)}
+.krow{position:absolute;z-index:1;left:0;right:0;bottom:clamp(56px,4.8vw,92px);display:flex;justify-content:center;align-items:flex-start;gap:clamp(32px,4.6vw,88px);text-align:left}
+.k b{display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:clamp(40px,3.1vw,60px);letter-spacing:-.04em;line-height:1}
+.k b i{font-style:normal;font-size:.43em;letter-spacing:-.01em}
+.k>span{display:block;margin-top:8px;font-size:15px;color:var(--g600)}
+.k.sep{width:1px;height:88px;background:rgba(10,10,11,.14)}
+.ovnote{position:absolute;z-index:1;left:var(--side);right:var(--side);bottom:20px;font-size:12px;color:var(--g600)}
+.vers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:64px}
+.vc{background:#F6F6F5;padding:32px;position:relative;display:flex;flex-direction:column;transition:transform .4s var(--ease),box-shadow .4s}
+.vc:hover{transform:translateY(-4px);box-shadow:0 24px 48px -24px rgba(10,10,11,.25)}
+.vc.pop:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--blue)}
+.vc .tg{align-self:flex-start;font-family:'Geist Mono';font-size:12px;letter-spacing:.04em;padding:6px 10px;border-radius:2px;background:#E3E3E2;color:var(--g600)}
+.vc.pop .tg{background:var(--ink);color:#fff}
+.vc .im{aspect-ratio:16/9.6;background:center/cover no-repeat;margin:24px 0 32px;border-radius:2px}
+.vc .nm{font-size:32px;letter-spacing:-.015em}
+.vc .nm em{font-style:normal;color:var(--g400)}
+.vc .sb{margin-top:8px;color:var(--g600);font-size:16px}
+.vc .pr{margin-top:16px;font-size:20px}
+.vc hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+.vc ul{list-style:none;display:grid;gap:14px;margin:16px 0 40px;font-size:16px}
+.vc li{position:relative;padding-left:28px}
+.vc li:before{content:"";position:absolute;left:0;top:5px;width:14px;height:8px;border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(-45deg)}
+.vc .link{margin-top:auto}
+.vc.pop .link{color:var(--blue)}
+.vhead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 .hero .eyebrow{margin-bottom:24px;opacity:.86}
 .hero .sl{margin-top:24px;max-width:640px;opacity:.9}
 .hero .links{display:flex;gap:40px;margin-top:40px}
@@ -115,7 +156,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 /* closer look / 360 */
 .look{background:var(--surf)}
 .look .bar{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
-.stage{position:relative;margin-top:56px;height:min(56vw,900px);min-height:420px;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#fbfbfb 0%,#e9eaec 55%,#cfd1d5 100%);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.stage{position:relative;margin-top:48px;height:min(48vw,820px);min-height:420px;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#fbfbfb 0%,#e9eaec 55%,#cfd1d5 100%);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
 .stage.drag{cursor:grabbing}
 .stage .v{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.025);transition:opacity .7s var(--ease),transform 1s var(--ease)}
 .stage .v.on{opacity:1;transform:none}
@@ -142,7 +183,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .thumb.on .pr:after{content:"";position:absolute;inset:0;background:var(--blue)}
 
 /* dimensions */
-.dims{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:80px}
+.dims{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:64px}
 .bp{position:relative;background:#F6F7F8;border:1px solid var(--line);padding:32px;min-height:420px}
 .bp .mono{color:var(--g600)}
 .bp svg{display:block;width:100%;height:auto;margin-top:24px}
@@ -167,7 +208,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .seg button:not(.on):hover{color:var(--blue)}
 
 /* carousel (peek) */
-.car{position:relative;margin-top:80px;overflow:hidden}
+.car{position:relative;margin-top:64px;overflow:hidden}
 .car .track{display:flex;gap:24px;transition:transform .9s var(--ease);will-change:transform;padding:0 var(--side)}
 .car .sl{flex:0 0 min(78vw,1440px);position:relative;overflow:hidden;border-radius:2px;background:#ddd}
 .car .sl .im{aspect-ratio:16/9;background:center/cover no-repeat;transform:scale(1.04);transition:transform 1.2s var(--ease),filter .6s}
@@ -194,7 +235,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .count{font-family:'Geist Mono';font-size:14px;color:var(--g600);letter-spacing:.04em}
 
 /* charging */
-.chg{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;margin-top:80px;min-height:680px}
+.chg{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;margin-top:64px;min-height:620px}
 .chg .ph{background:center 88%/cover no-repeat;position:relative;overflow:hidden;min-height:480px}
 .chg .ph .tag{position:absolute;left:24px;top:24px;color:#fff;padding:10px 14px}
 .panel{background:var(--dark);border:1px solid var(--line-d);padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
@@ -214,7 +255,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .replay:hover{color:#7FA8EA}
 
 /* full-bleed */
-.bleed{position:relative;height:min(62vw,1080px);min-height:560px;overflow:hidden;color:#fff;background:var(--navy)}
+.bleed{position:relative;height:min(46vw,880px);min-height:520px;overflow:hidden;color:#fff;background:var(--navy)}
 .bleed .im{position:absolute;left:0;right:0;top:-12%;height:124%;background:center/cover no-repeat;will-change:transform}
 .bleed:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(7,10,17,.62) 0%,rgba(7,10,17,0) 46%)}
 .bleed .ct{position:absolute;z-index:2;left:var(--side);right:var(--side);bottom:80px}
@@ -231,7 +272,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .conv .t{margin-top:14px;opacity:.8}
 
 /* ADAS */
-.adas{position:relative;margin-top:80px;height:min(56vw,960px);min-height:520px;overflow:hidden;background:#111}
+.adas{position:relative;margin-top:64px;height:min(46vw,840px);min-height:520px;overflow:hidden;background:#111}
 .adas .im{position:absolute;inset:0;background:center/cover no-repeat}
 .adas svg.ov{position:absolute;inset:0;width:100%;height:100%;z-index:2}
 .adas .lay{opacity:0;transition:opacity .6s var(--ease)}
@@ -266,8 +307,19 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .gstrip button.on{opacity:1}
 .gstrip button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--blue)}
 
+/* overview version pill (same studio image until per-version renders arrive) */
+$$('#vPill button').forEach(b=>b.onclick=()=>$$('#vPill button').forEach(x=>x.classList.toggle('on',x===b)));
+
+/* loadspace list */
+(()=>{const bs=$$('#lsl button'),im=$$('#lsi div');let i=0,tm;const go=n=>{i=n%bs.length;bs.forEach((b,k)=>{b.classList.remove('on');void b.offsetWidth;b.classList.toggle('on',k===i)});im.forEach((d,k)=>d.classList.toggle('on',k===i));clearTimeout(tm);tm=setTimeout(()=>go(i+1),6000)};bs.forEach((b,k)=>b.onclick=()=>go(k));go(0)})();
+
+/* cabin hotspots */
+(()=>{const hot=$('#hot'),hs=$$('.hs',hot),card=$('#hcard');const open=h=>{hs.forEach(x=>x.classList.toggle('on',x===h));if(!h){card.classList.remove('show');return}const [a,b,c]=h.dataset.t.split('|');card.children[0].textContent=a;card.children[1].textContent=b;card.children[2].textContent=c;
+  const W=hot.clientWidth,x=h.offsetLeft,y=h.offsetTop,cw=card.offsetWidth;card.style.left=(x+cw+40>W?x-cw-36:x+36)+'px';card.style.top=Math.max(16,y-20)+'px';card.classList.add('show')};
+  hs.forEach(h=>h.onclick=()=>open(h.classList.contains('on')&&card.classList.contains('show')?null:h));requestAnimationFrame(()=>open(hs[0]))})();
+
 /* faq */
-.faq{margin-top:80px;border-top:1px solid var(--line)}
+.faq{margin-top:64px;border-top:1px solid var(--line)}
 .qa{border-bottom:1px solid var(--line)}
 .qa button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:32px 0;text-align:left;transition:color .25s}
 .qa button:hover{color:var(--blue)}
@@ -281,7 +333,7 @@ sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-l
 .qa .ans p{padding:0 0 32px;max-width:1080px}
 
 /* find */
-.find{position:relative;height:min(52vw,900px);min-height:600px;color:#fff;overflow:hidden;display:grid;place-items:center;text-align:center;background:var(--navy)}
+.find{position:relative;height:min(42vw,800px);min-height:560px;color:#fff;overflow:hidden;display:grid;place-items:center;text-align:center;background:var(--navy)}
 .find .im{position:absolute;inset:-6% 0;background:center 60%/cover no-repeat;will-change:transform}
 .find:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 70% at 50% 45%,rgba(7,10,17,.62),rgba(7,10,17,.35) 70%,rgba(7,10,17,.5))}
 .find .ct{position:relative;z-index:2;max-width:880px;padding:0 24px}
@@ -307,7 +359,39 @@ footer .bot{display:flex;justify-content:space-between;align-items:center;margin
 footer .bot div{display:flex;gap:32px}
 footer .bot a:hover{color:#7FA8EA}
 
+
+.lsx{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:60px;margin-top:56px;align-items:stretch}
+.lsl{display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+.lsl button{position:relative;text-align:left;padding:24px 0 24px 48px;border-top:1px solid var(--line);display:block}
+.lsl button i{position:absolute;left:0;top:30px;font-style:normal;color:var(--g400)}
+.lsl button b{display:block;color:var(--g600);transition:color .3s}
+.lsl button p{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .4s,margin .4s}
+.lsl button.on b{color:var(--ink)}.lsl button.on i{color:var(--blue)}
+.lsl button.on p{max-height:160px;opacity:1;margin-top:12px}
+.lsl button:hover b{color:var(--blue)}
+.lsl button u{position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--blue)}
+.lsl button.on u{width:100%;transition:width 6s linear}
+.lsl .note{margin-top:auto;padding-top:32px;padding-bottom:4px}
+.lsi{position:relative;aspect-ratio:1100/720;overflow:hidden;background:#ddd}
+.lsi div{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.03);transition:opacity .6s var(--ease),transform 1.2s var(--ease)}
+.lsi div.on{opacity:1;transform:none}
+.hot{position:relative;margin-top:56px;aspect-ratio:1680/880;background:center/cover no-repeat;border-radius:2px;overflow:hidden}
+.hs{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 4px 16px rgba(0,0,0,.25);transition:background .3s,transform .3s}
+.hs:before,.hs:after{content:"";position:absolute;left:13px;top:19px;width:14px;height:1.6px;background:var(--ink);transition:transform .3s var(--ease),background .3s}
+.hs:after{transform:rotate(90deg)}
+.hs:not(.on):hover{transform:scale(1.1)}
+.hs:not(.on) i{display:none}
+.hs:not(.on){animation:halo 2.4s infinite}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45),0 4px 16px rgba(0,0,0,.25)}70%{box-shadow:0 0 0 14px rgba(255,255,255,0),0 4px 16px rgba(0,0,0,.25)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0),0 4px 16px rgba(0,0,0,.25)}}
+.hs.on{background:var(--blue)}
+.hs.on:before{background:#fff;transform:rotate(45deg)}.hs.on:after{background:#fff;transform:rotate(135deg)}
+.hcard{position:absolute;width:400px;padding:22px 24px;color:#fff;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s var(--ease);pointer-events:none}
+.hcard.show{opacity:1;transform:none}
+.hcard .mono{display:block;opacity:.7;margin-bottom:8px}.hcard .h4{display:block;font-size:20px}.hcard p{margin-top:8px;opacity:.85}
+.htip{position:absolute;left:24px;bottom:24px;color:#fff;padding:12px 20px}
+@media (max-width:1100px){.lsx{grid-template-columns:1fr}.hcard{width:280px}}
 @media (max-width:1100px){
+  .vers{grid-template-columns:1fr 1fr}
   .hdr nav{display:none}
   .sub ul{display:none}
   .stats{grid-template-columns:repeat(2,1fr)}
@@ -318,6 +402,8 @@ footer .bot a:hover{color:#7FA8EA}
   .thumb{width:22%}
 }
 @media (max-width:640px){
+  .krow{position:relative;bottom:auto;flex-wrap:wrap;padding:0 20px;margin-top:40vw}.k.sep{display:none}.ovnote{position:relative;bottom:auto;margin:24px 0}
+  .vers{grid-template-columns:1fr}.pill button{padding:12px 20px}
   .hdr{padding:0 20px}
   .stats{grid-template-columns:1fr}
   .hero .chips{flex-wrap:wrap}
@@ -358,49 +444,42 @@ footer .bot a:hover{color:#7FA8EA}
     <li><a href="#cabin">Cabin</a></li>
     <li><a href="#safety">Safety</a></li>
     <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#versions">Versions</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a class="link" href="#find">Find Your Local MAXUS ARROW</a>
 </div>
 
-<!-- ============ 01 HERO ============ -->
+<!-- ============ 01 HERO (immersive) ============ -->
 <section class="hero" id="top">
-  <div class="bg" style="background-image:url(IMG_660)"></div>
+  <div class="bg" style="background-image:url(IMG_657)"></div>
   <div class="ct">
-    <div>
-      <div class="mono eyebrow fade">MAXUS · Electric Large Van</div>
-      <h1 class="display fade f2">eDELIVER 9</h1>
-      <p class="body-l sl fade f3">The van that powers productivity.</p>
-      <div class="links fade f4">
-        <a class="link" href="#find">Find Your Local MAXUS ARROW</a>
-        <a class="link down" href="#overview">Explore eDELIVER 9 ARROW</a>
-      </div>
+    <div class="mono eyebrow fade">MAXUS · Electric Large Van</div>
+    <h1 class="display fade f2">eDELIVER 9</h1>
+    <p class="body-l sl fade f3">The van that powers productivity.</p>
+    <div class="links fade f4">
+      <a class="link" href="#find">Find Your Local MAXUS ARROW</a>
+      <a class="link down" href="#overview">Explore eDELIVER 9 ARROW</a>
     </div>
   </div>
+  <p class="cap">Images shown depict the eDELIVER 9 L3H2 Cargo Van.</p>
   <div class="cue"></div>
 </section>
 
-<!-- ============ 02 OVERVIEW / KEY FIGURES ============ -->
-<section class="sec" id="overview">
-  <div class="wrap">
-    <div class="head">
-      <span class="mono rv">Overview</span>
-      <h2 class="h1 rv d1">88 kWh. 150 kW.<br>Electric power for work.<sup>*</sup></h2>
-      <p class="body-l muted rv d2" style="max-width:1080px">The eDELIVER 9 pairs an 88 kWh battery with a front-wheel-drive motor delivering up to 150 kW and 330 Nm. All-electric power, with the loadspace and access of a working van.</p>
-    </div>
-    <div class="stats">
-      <div class="stat rv"><div class="data"><span data-count="88">88</span> kWh<sup>*</sup></div><div class="lbl body-m">Battery capacity for electric work.</div></div>
-      <div class="stat rv d1"><div class="data"><span data-count="11">11</span> m<span class="cu">3</span><sup>*</sup></div><div class="lbl body-m">Space for the daily load.</div></div>
-      <div class="stat rv d2"><div class="data"><span data-count="150">150</span> kW<sup>*</sup></div><div class="lbl body-m">Maximum electric-motor power.</div></div>
-      <div class="stat rv"><div class="data"><span data-count="330">330</span> Nm<sup>*</sup></div><div class="lbl body-m">Maximum motor torque.</div></div>
-      <div class="stat rv d1"><div class="data"><span data-count="253">253</span>°<sup>*</sup></div><div class="lbl body-m">Rear-door hinges for wider access.</div></div>
-      <div class="stat rv d2"><div class="data"><span data-count="51">51</span> min<sup>**</sup></div><div class="lbl body-m">DC charging from 10% to 80%.</div></div>
-    </div>
-    <div class="ov-notes rv">
-      <p class="note">*Figures shown refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Power and torque figures are maximum outputs. Specifications and equipment vary by market and version.</p>
-      <p class="note">**10–80% DC charging: 51 minutes. DC charging power: 90 kW. Actual charging time varies with charger output, battery condition, temperature and other operating conditions.</p>
-    </div>
+<!-- ============ 02 OVERVIEW (studio + versions + key figures) ============ -->
+<section class="ovw" id="overview">
+  <div class="bgv on" data-v="L3H2" style="background-image:url(IMG_637)"></div>
+  <h2 class="h2 rv">Electric power for work.</h2>
+  <div class="vtabs rv d1"><div class="pill" id="vPill"><button data-v="L2H2">L2H2</button><button class="on" data-v="L3H2">L3H2</button><button data-v="L3H3">L3H3</button></div><a href="#versions" class="cmp">Compare</a></div>
+  <div class="krow">
+    <div class="k rv"><b><span data-count="88">88</span><i>kWh*</i></b><span>Battery capacity</span></div>
+    <div class="k rv d1"><b><span data-count="11">11</span><i>m<span class="cu">3</span>*</i></b><span>Loadspace</span></div>
+    <div class="k rv d2"><b><span data-count="150">150</span><i>kW*</i></b><span>Maximum motor power</span></div>
+    <div class="k rv d3"><b><span data-count="51">51</span><i>min**</i></b><span>DC charging, 10–80%</span></div>
+    <div class="k sep rv d4"></div>
+    <div class="k rv d4"><b>£XX,XXX<i>†</i></b><span>Starting price, excl. VAT</span></div>
   </div>
+  <p class="ovnote">*26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van, 88 kWh battery. Specifications vary by market and version. &nbsp; **DC charging power 90 kW; actual time varies with charger, battery condition and temperature. &nbsp; †Price placeholder, set per market.</p>
 </section>
 
 <!-- ============ 03 A CLOSER LOOK (drag to rotate) ============ -->
@@ -500,23 +579,19 @@ footer .bot a:hover{color:#7FA8EA}
   </div>
 </section>
 
-<!-- ============ 05 11 m3 OF WORKING SPACE (carousel) ============ -->
+<!-- ============ 05 LOADSPACE (list switches image) ============ -->
 <section class="sec" id="space" style="padding-top:0">
   <div class="wrap">
-    <div class="head">
-      <span class="mono rv">Loadspace</span>
-      <h2 class="h1 rv d1">11 m<span class="cu">3</span> of working space.<sup>*</sup></h2>
-      <p class="body-l muted rv d2" style="max-width:1080px">A 3,413 mm-long loadspace gives equipment and deliveries room on board. Wide-opening rear doors and cargo lighting help you access the space behind the cabin.</p>
-      <p class="note rv d3">*Figures shown refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Specifications and equipment vary by market and version.</p>
+    <div class="head"><span class="mono rv">Loadspace</span><h2 class="h1 rv d1">11 m<span class="cu">3</span> of working space.<sup>*</sup></h2></div>
+    <div class="lsx">
+      <div class="lsl rv" id="lsl">
+        <button class="on" data-i="0"><i class="mono">01</i><b class="h4">11 m<span class="cu">3</span> loadspace*</b><p class="body-m muted">A 3,413 mm-long loadspace gives equipment and deliveries room on board, with a flat floor and cargo lighting.</p><u></u></button>
+        <button data-i="1"><i class="mono">02</i><b class="h4">Rear doors to 253°*</b><p class="body-m muted">Wide-opening rear doors fold back against the body for forklift and pallet access.</p><u></u></button>
+        <button data-i="2"><i class="mono">03</i><b class="h4">Sliding side door</b><p class="body-m muted">Load from the kerb and reach the cab without stepping out.</p><u></u></button>
+        <p class="note">*Figures refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Specifications vary by market and version.</p>
+      </div>
+      <div class="lsi rv d1" id="lsi"><div class="on" style="background-image:url(IMG_635)"></div><div style="background-image:url(IMG_648)"></div><div style="background-image:url(IMG_637)"></div></div>
     </div>
-  </div>
-  <div class="car rv" data-car>
-    <div class="track">
-      <div class="sl on"><div class="im" style="background-image:url(IMG_635)"></div><div class="cap glass"><span class="mono">01 · Loadspace</span><span class="body-s">A flat floor and square sides, lit from above.</span></div></div>
-      <div class="sl"><div class="im" style="background-image:url(IMG_648)"></div><div class="cap glass"><span class="mono">02 · Rear doors</span><span class="body-s">Rear doors open to 253° and fold back against the body.</span></div></div>
-      <div class="sl"><div class="im" style="background-image:url(IMG_637)"></div><div class="cap glass"><span class="mono">03 · Side door</span><span class="body-s">Load from the kerb through the sliding side door.</span></div></div>
-    </div>
-    <div class="wrap ctl"><div class="prog"></div><span class="count"></span><div class="arr"><button class="p" aria-label="Previous">ARROW</button><button class="n" aria-label="Next">ARROW</button></div></div>
   </div>
 </section>
 
@@ -577,7 +652,7 @@ footer .bot a:hover{color:#7FA8EA}
   </div>
 </section>
 
-<!-- ============ 08 A CONNECTED PLACE TO WORK ============ -->
+<!-- ============ 08 CABIN (hotspots) ============ -->
 <section class="sec" id="cabin">
   <div class="wrap">
     <div class="head">
@@ -585,15 +660,14 @@ footer .bot a:hover{color:#7FA8EA}
       <h2 class="h1 rv d1">A connected place to work.</h2>
       <p class="body-l muted rv d2" style="max-width:1080px">A column-mounted drive selector, central touchscreen and smartphone connectivity keep driving controls and everyday tools within reach.</p>
     </div>
-  </div>
-  <div class="car rv" data-car>
-    <div class="track">
-      <div class="sl on"><div class="im" style="background-image:url(IMG_670)"></div><div class="cap glass"><span class="mono">01 · Cockpit</span><span class="body-s">Digital driver display and a column-mounted drive selector.</span></div></div>
-      <div class="sl"><div class="im" style="background-image:url(IMG_669)"></div><div class="cap glass"><span class="mono">02 · Touchscreen</span><span class="body-s">Navigation, media and vehicle settings on the central screen.</span></div></div>
-      <div class="sl"><div class="im" style="background-image:url(IMG_640)"></div><div class="cap glass"><span class="mono">03 · Dashboard</span><span class="body-s">Storage across the dash for paperwork, phones and cups.</span></div></div>
-      <div class="sl"><div class="im" style="background-image:url(IMG_641)"></div><div class="cap glass"><span class="mono">04 · Seating</span><span class="body-s">Three seats across, with room to move between them.</span></div></div>
+    <div class="hot rv" id="hot" style="background-image:url(IMG_670)">
+      <button class="hs on" style="left:49.8%;top:35.3%" data-t="01 · Touchscreen|Central touchscreen|Navigation, media and vehicle settings, with smartphone connectivity."></button>
+      <button class="hs" style="left:30.9%;top:43.6%" data-t="02 · Display|Digital driver display|Speed, range and charge level in one clear view."></button>
+      <button class="hs" style="left:45.8%;top:47.8%" data-t="03 · Drive selector|Column-mounted drive selector|Frees up the space between the seats for a third passenger."></button>
+      <button class="hs" style="left:74.4%;top:69.9%" data-t="04 · Seats|Three seats across|Room for a crew of three, with storage under the passenger bench."></button>
+      <div class="hcard glass" id="hcard"><span class="mono"></span><b class="h4"></b><p class="body-s"></p></div>
+      <span class="htip glass mono">Tap + to explore the cabin</span>
     </div>
-    <div class="wrap ctl"><div class="prog"></div><span class="count"></span><div class="arr"><button class="p" aria-label="Previous">ARROW</button><button class="n" aria-label="Next">ARROW</button></div></div>
   </div>
 </section>
 
@@ -654,6 +728,19 @@ footer .bot a:hover{color:#7FA8EA}
       <span class="lbl glass mono" id="galLbl"></span>
     </div>
     <div class="gstrip" id="gstrip"></div>
+  </div>
+</section>
+
+<!-- ============ 10b COMPARE VERSIONS ============ -->
+<section class="sec" id="versions">
+  <div class="wrap">
+    <div class="vhead"><div class="head"><span class="mono rv">Versions</span><h2 class="h1 rv d1">Compare versions.</h2></div><a class="link rv" href="#">Compare all specifications ARROW</a></div>
+    <div class="vers">
+      <div class="vc rv"><span class="tg">26.5MY</span><div class="im" style="background-image:url(IMG_637)"></div><div class="nm">eDELIVER 9 <em>L2H2</em></div><div class="sb">Cargo Van · Medium length, high roof</div><div class="pr">Starting at £XX,XXX†</div><hr><span class="sb">Included:</span><ul><li>88 kWh battery, 150 kW motor</li><li>DC charging up to 90 kW</li><li>Loadspace TBC m<span class="cu">3</span></li></ul><a class="link" href="#">Explore L2H2 ARROW</a></div>
+      <div class="vc pop rv d1"><span class="tg">MOST POPULAR</span><div class="im" style="background-image:url(IMG_637)"></div><div class="nm">eDELIVER 9 <em>L3H2</em></div><div class="sb">Cargo Van · Long, high roof</div><div class="pr">Starting at £XX,XXX†</div><hr><span class="sb">L2H2 features, plus:</span><ul><li>Loadspace 11 m<span class="cu">3</span>*</li><li>Loadspace length 3,413 mm*</li><li>Rear doors open to 253°*</li></ul><a class="link" href="#">Explore L3H2 ARROW</a></div>
+      <div class="vc rv d2"><span class="tg">26.5MY</span><div class="im" style="background-image:url(IMG_637)"></div><div class="nm">eDELIVER 9 <em>L3H3</em></div><div class="sb">Cargo Van · Long, extra-high roof</div><div class="pr">Starting at £XX,XXX†</div><hr><span class="sb">L3H2 features, plus:</span><ul><li>Extra-high roof for standing room</li><li>Loadspace TBC m<span class="cu">3</span></li><li>Rear doors open to 253°*</li></ul><a class="link" href="#">Explore L3H3 ARROW</a></div>
+    </div>
+    <p class="note rv" style="margin-top:32px">*Figures refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. †Price placeholder; prices and versions vary by market. TBC: data to be confirmed for each version.</p>
   </div>
 </section>
 
@@ -739,7 +826,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return
   $$('[data-count]',el).forEach(c=>{const to=+c.dataset.count,t0=performance.now(),d=1400;const f=t=>{const k=Math.min(1,(t-t0)/d),v=Math.round(to*(1-Math.pow(1-k,3)));c.textContent=v.toLocaleString('en');if(k<1)requestAnimationFrame(f)};c.textContent='0';requestAnimationFrame(f)});
   if(el.id==='chgPanel')charge();
 }),{threshold:.18});
-$$('.rv,.stat').forEach(el=>io.observe(el));
+$$('.rv,.stat,.k').forEach(el=>io.observe(el));
 
 /* 01 closer look: drag / arrows / thumbs */
 (()=>{const st=$('#stage'),vs=$$('.v',st),th=$$('#thumbs .thumb'),deg=$('#deg'),dot=$('#ringDot');let i=0;
@@ -778,7 +865,7 @@ const adasTxt={acc:['Assist','Keeps a set distance to the vehicle ahead, slowing
 $$('#adasTabs button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;$$('#adasTabs button').forEach(x=>x.classList.toggle('on',x===b));$$('#adas .lay').forEach(l=>l.classList.toggle('on',l.dataset.k===k));const d=$('#adasDesc');d.children[0].textContent=adasTxt[k][0];d.children[1].textContent=adasTxt[k][1]});
 
 /* gallery */
-const G={ext:[['IMG_644','Front',1],['IMG_643','Grille',0],['IMG_645','LED headlight',1],['IMG_646','Headlight detail',0],['IMG_650','Rear badge',1],['IMG_651','Wheel',1],['IMG_664','Front corner',1],['IMG_657','On the road',0]],
+const G={ext:[['IMG_657','On the road',0],['IMG_644','Front',1],['IMG_643','Grille',0],['IMG_645','LED headlight',1],['IMG_646','Headlight detail',0],['IMG_650','Rear badge',1],['IMG_651','Wheel',1],['IMG_664','Front corner',1]],
          int:[['IMG_670','Cockpit',0],['IMG_669','Touchscreen',0],['IMG_640','Dashboard',0],['IMG_641','Seating',0],['IMG_671','Cab',0],['IMG_668','Loadspace',0]]};
 (()=>{const gal=$('#gal'),strip=$('#gstrip'),lbl=$('#galLbl');let set='ext',i=0;
   function build(){$$('.g',gal).forEach(x=>x.remove());strip.innerHTML='';G[set].forEach(([src,name,port],k)=>{const d=document.createElement('div');d.className='g'+(port?' port':'');d.style.backgroundImage=src;gal.insertBefore(d,lbl);const b=document.createElement('button');b.style.backgroundImage=src;b.setAttribute('aria-label',name);b.onclick=()=>go(k);strip.appendChild(b)});go(0)}
@@ -787,6 +874,9 @@ const G={ext:[['IMG_644','Front',1],['IMG_643','Grille',0],['IMG_645','LED headl
   $$('#galTabs button').forEach(b=>b.onclick=()=>{set=b.dataset.set;$$('#galTabs button').forEach(x=>x.classList.toggle('on',x===b));build()});build();
 })();
 
+/* overview version pill (same studio image until per-version renders arrive) */
+$$('#vPill button').forEach(b=>b.onclick=()=>$$('#vPill button').forEach(x=>x.classList.toggle('on',x===b)));
+
 /* faq */
 $$('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 
@@ -794,7 +884,7 @@ $$('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open
 $('#mkBtn').onclick=e=>{e.stopPropagation();$('#mk').classList.toggle('open')};document.addEventListener('click',()=>$('#mk').classList.remove('open'));
 
 /* ?shot=N : static capture helper for review */
-const q=new URLSearchParams(location.search);if(q.has('static')){document.documentElement.style.scrollBehavior='auto';$$('.rv,.stat').forEach(e=>e.classList.add('in'));hero.classList.add('ld')}
+const q=new URLSearchParams(location.search);if(q.has('static')){document.documentElement.style.scrollBehavior='auto';$$('.rv,.stat,.k').forEach(e=>e.classList.add('in'));hero.classList.add('ld')}
 </script>
 </body>
 </html>
