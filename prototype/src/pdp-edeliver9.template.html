@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eDELIVER 9 | MAXUS</title>
+<style>
+/*FONTS*/
+:root{
+  --ink:#0A0A0B;--white:#fff;--g600:#5A5F68;--g400:#8A8F98;--surf:#F1F1F0;--navy:#070A11;--dark:#0C0D0F;--blue:#1E5FC8;
+  --line:rgba(10,10,11,.12);--line-d:rgba(255,255,255,.14);
+  --side:clamp(20px,6.25vw,120px);--sec:clamp(80px,7.3vw,140px);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:136px;overflow-x:clip}
+body{background:#fff;color:var(--ink);font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{padding:0 var(--side);max-width:1920px;margin:0 auto}
+
+/* type — MAXUS 2026 */
+.display{font-family:Michroma;font-size:clamp(44px,5vw,96px);line-height:1.08;letter-spacing:-.02em;font-weight:400}
+.h1{font-family:Michroma;font-size:clamp(32px,2.92vw,56px);line-height:1.15;letter-spacing:-.02em;font-weight:400}
+.h2{font-family:Michroma;font-size:clamp(28px,2.3vw,44px);line-height:1.18;letter-spacing:-.015em;font-weight:400}
+.card-t{font-size:clamp(24px,1.67vw,32px);line-height:1.25;letter-spacing:-.015em}
+.h4{font-weight:500;font-size:24px;line-height:1.3;letter-spacing:-.01em}
+.data{font-weight:300;font-size:clamp(64px,5vw,96px);line-height:1;letter-spacing:-.05em}
+.body-l{font-size:clamp(18px,1.15vw,22px);line-height:1.5;letter-spacing:-.005em}
+.body-m{font-size:20px;line-height:1.5}
+.body-s{font-size:16px;line-height:1.45}
+.mono{font-family:'Geist Mono',monospace;font-size:14px;line-height:1.4;text-transform:uppercase;letter-spacing:.04em}
+.muted{color:var(--g600)}
+.dark .muted{color:rgba(255,255,255,.66)}
+.cu{font-size:.5em;vertical-align:.85em;line-height:0;margin-left:.04em;letter-spacing:0}
+.pc{font-family:Geist;font-weight:300;letter-spacing:-.02em}
+sup{font-size:.45em;vertical-align:super;line-height:0;letter-spacing:0;margin-left:.04em}
+.note{font-size:13px;line-height:1.5;color:var(--g400);max-width:1260px}
+.note+.note{margin-top:8px}
+
+/* text link + arrow (all CTAs are weak text links) */
+.link{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:16px;line-height:1.2;letter-spacing:-.005em;transition:color .25s}
+.link svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.link:hover{color:var(--blue)}
+.link:hover svg{transform:translateX(4px)}
+.link.down svg{transform:rotate(90deg)}
+.link.down:hover svg{transform:rotate(90deg) translateX(4px)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}.rv.d5{transition-delay:.4s}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto 0;height:80px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 60px;color:#fff;transition:background .4s,transform .45s var(--ease),border-color .4s;border-bottom:1px solid transparent}
+.hdr.solid{background:rgba(7,10,17,.78);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-color:var(--line-d)}
+.hdr.hide{transform:translateY(-100%)}
+.hdr .logo{width:165px;height:28px;display:block}
+.hdr nav{display:flex;gap:40px;font-size:18px;line-height:1.2}
+.hdr nav a{position:relative;opacity:.92;transition:color .25s}
+.hdr nav a:hover{color:#7FA8EA}
+.hdr nav a.cur:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:currentColor}
+.hdr .mkt{display:flex;align-items:center;gap:8px;font-size:16px}
+.hdr .mkt svg{width:18px;height:18px}
+
+/* sub nav */
+.sub{position:fixed;top:0;left:0;right:0;height:64px;z-index:45;background:rgba(255,255,255,.86);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 var(--side);transform:translateY(-100%);transition:transform .45s var(--ease)}
+.sub.show{transform:none}
+.sub.low{transform:translateY(80px)}
+.sub .nm{font-family:Michroma;font-size:16px;letter-spacing:-.01em}
+.sub ul{display:flex;gap:32px;list-style:none}
+.sub ul a{font-size:15px;color:var(--g600);position:relative;padding:22px 0;transition:color .25s}
+.sub ul a:hover{color:var(--ink)}
+.sub ul a.on{color:var(--ink)}
+.sub ul a.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:760px;overflow:hidden;background:var(--navy);color:#fff}
+.hero .bg{position:absolute;inset:0;background:center 58%/cover no-repeat;transform:scale(1.08);transition:transform 2.6s var(--ease)}
+.hero.ld .bg{transform:scale(1)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,10,17,.55) 0%,rgba(7,10,17,.18) 40%,rgba(7,10,17,0) 60%),linear-gradient(90deg,rgba(7,10,17,.45) 0%,rgba(7,10,17,0) 45%),linear-gradient(0deg,rgba(7,10,17,.35) 0%,rgba(7,10,17,0) 20%)}
+.hero .ct{position:absolute;z-index:2;left:var(--side);right:var(--side);top:clamp(140px,16vh,200px)}
+.hero .eyebrow{margin-bottom:24px;opacity:.86}
+.hero .sl{margin-top:24px;max-width:640px;opacity:.9}
+.hero .links{display:flex;gap:40px;margin-top:40px}
+.hero .chips{display:flex;gap:12px}
+.glass{background:rgba(10,10,11,.42);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.2);border-radius:4px}
+.chip{padding:16px 20px;min-width:150px}
+.chip b{display:block;font-weight:300;font-size:32px;letter-spacing:-.03em;line-height:1.1}
+.chip span{display:block;margin-top:6px;opacity:.72}
+.cue{position:absolute;z-index:2;left:50%;bottom:28px;transform:translateX(-50%);width:1px;height:40px;background:rgba(255,255,255,.25);overflow:hidden}
+.cue:after{content:"";position:absolute;left:0;top:-40px;width:1px;height:40px;background:#fff;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{to{top:40px}}
+.hero .fade{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.hero.ld .fade{opacity:1;transform:none}
+.hero.ld .f2{transition-delay:.15s}.hero.ld .f3{transition-delay:.3s}.hero.ld .f4{transition-delay:.45s}
+
+/* sections */
+.sec{padding:var(--sec) 0}
+.head{display:grid;grid-template-columns:1fr;gap:24px;max-width:1280px}
+.head .mono{color:var(--g600)}
+.dark .head .mono{color:rgba(255,255,255,.6)}
+.dark{background:var(--navy);color:#fff}
+
+/* overview stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);column-gap:clamp(24px,4.2vw,80px);row-gap:64px;margin-top:80px}
+.stat{position:relative;padding-bottom:28px}
+.stat .lbl{margin-top:16px;color:var(--g600)}
+.stat:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--line)}
+.stat:before{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--ink);transition:width 1.4s var(--ease) .2s;z-index:1}
+.stat.in:before{width:100%}
+.ov-notes{margin-top:56px}
+
+/* closer look / 360 */
+.look{background:var(--surf)}
+.look .bar{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.stage{position:relative;margin-top:56px;height:min(56vw,900px);min-height:420px;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#fbfbfb 0%,#e9eaec 55%,#cfd1d5 100%);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.stage.drag{cursor:grabbing}
+.stage .v{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.025);transition:opacity .7s var(--ease),transform 1s var(--ease)}
+.stage .v.on{opacity:1;transform:none}
+.stage .v.mul{mix-blend-mode:multiply;background-size:contain;background-color:transparent}
+.stage .floor{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(0deg,rgba(0,0,0,.05),transparent)}
+.dial{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:10px 18px;color:#fff;z-index:3}
+.dial .deg{font-family:'Geist Mono';font-size:14px;letter-spacing:.04em;min-width:44px;text-align:center}
+.dial svg{width:18px;height:18px;opacity:.85}
+.ring{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);width:min(64%,1100px);height:120px;pointer-events:none;z-index:2}
+.ring ellipse{fill:none;stroke:rgba(10,10,11,.14);stroke-width:1}
+.ring circle{fill:var(--blue);transition:cx .7s var(--ease),cy .7s var(--ease)}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);z-index:3;transition:background .25s,color .25s,border-color .25s}
+.nav-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav-btn svg{width:18px;height:18px}
+.nav-btn.prev{left:var(--side)}.nav-btn.next{right:var(--side)}
+.nav-btn.prev svg{transform:rotate(180deg)}
+.thumbs{display:flex;justify-content:center;gap:12px;margin-top:24px}
+.thumb{width:168px;text-align:left;opacity:.55;transition:opacity .3s}
+.thumb:hover,.thumb.on{opacity:1}
+.thumb i{display:block;height:96px;background:center/cover no-repeat #e5e6e8;border-radius:2px;position:relative;overflow:hidden}
+.thumb i.mul{background-size:contain;background-color:#fff}
+.thumb span{display:block;margin-top:10px;font-size:14px;color:var(--g600)}
+.thumb .pr{display:block;height:2px;background:var(--line);margin-top:8px;position:relative}
+.thumb.on .pr:after{content:"";position:absolute;inset:0;background:var(--blue)}
+
+/* dimensions */
+.dims{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:80px}
+.bp{position:relative;background:#F6F7F8;border:1px solid var(--line);padding:32px;min-height:420px}
+.bp .mono{color:var(--g600)}
+.bp svg{display:block;width:100%;height:auto;margin-top:24px}
+.bp .ln{fill:none;stroke:#2B2F36;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.bp .ln2{fill:none;stroke:#2B2F36;stroke-width:1;opacity:.55}
+.bp .cargo{fill:rgba(30,95,200,.06);stroke:var(--blue);stroke-width:1.2;stroke-dasharray:6 5;opacity:0;transition:opacity .4s}
+.bp .dim{stroke:var(--g400);stroke-width:1;fill:none}
+.bp .dim-b{stroke:var(--blue);stroke-width:1.2;fill:none}
+.bp text{font-family:'Geist Mono';font-size:13px;fill:var(--g600);letter-spacing:.03em}
+.bp text.b{fill:var(--blue)}
+.bp .grid{stroke:rgba(10,10,11,.05);stroke-width:1}
+.bp:hover .cargo,.bp.show .cargo{opacity:1}
+.bp .hint{position:absolute;right:32px;top:32px;color:var(--g400)}
+.ver{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:56px;flex-wrap:wrap}
+.ver .h4{margin-bottom:24px}
+.ver .vals{display:flex;gap:96px}
+.ver .vals .data{font-size:clamp(48px,3.4vw,64px)}
+.ver .vals .lbl{margin-top:12px;color:var(--g600)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;padding:4px}
+.seg button{padding:10px 18px;font-size:15px;border-radius:2px;color:var(--g600);transition:all .25s}
+.seg button.on{background:var(--ink);color:#fff}
+.seg button:not(.on):hover{color:var(--blue)}
+
+/* carousel (peek) */
+.car{position:relative;margin-top:80px;overflow:hidden}
+.car .track{display:flex;gap:24px;transition:transform .9s var(--ease);will-change:transform;padding:0 var(--side)}
+.car .sl{flex:0 0 min(78vw,1440px);position:relative;overflow:hidden;border-radius:2px;background:#ddd}
+.car .sl .im{aspect-ratio:16/9;background:center/cover no-repeat;transform:scale(1.04);transition:transform 1.2s var(--ease),filter .6s}
+.car .sl.on .im{transform:none}
+.car .sl:not(.on) .im{filter:brightness(.72) saturate(.85)}
+.car .cap{position:absolute;left:24px;bottom:24px;color:#fff;padding:14px 18px;max-width:520px;opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease) .2s,transform .6s var(--ease) .2s}
+.car .sl.on .cap{opacity:1;transform:none}
+.car .cap .mono{opacity:.72;display:block;margin-bottom:6px}
+.car .cap .body-s{font-size:17px}
+.car .ctl{display:flex;align-items:center;justify-content:space-between;margin-top:32px}
+.prog{display:flex;gap:8px}
+.prog button{width:56px;height:24px;position:relative}
+.prog button:before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:var(--line)}
+.prog button i{position:absolute;left:0;top:11px;height:2px;width:0;background:var(--ink)}
+.prog button.on i{width:100%;transition:width 6s linear}
+.dark .prog button:before{background:var(--line-d)}
+.dark .prog button i{background:#fff}
+.arr{display:flex;gap:12px}
+.arr button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .25s}
+.arr button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.arr button svg{width:16px;height:16px}
+.arr button.p svg{transform:rotate(180deg)}
+.dark .arr button{border-color:var(--line-d)}
+.count{font-family:'Geist Mono';font-size:14px;color:var(--g600);letter-spacing:.04em}
+
+/* charging */
+.chg{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;margin-top:80px;min-height:680px}
+.chg .ph{background:center 88%/cover no-repeat;position:relative;overflow:hidden;min-height:480px}
+.chg .ph .tag{position:absolute;left:24px;top:24px;color:#fff;padding:10px 14px}
+.panel{background:var(--dark);border:1px solid var(--line-d);padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.batt{position:relative;height:120px;border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:6px;margin-top:24px}
+.batt:after{content:"";position:absolute;right:-9px;top:38px;width:6px;height:44px;border-radius:0 3px 3px 0;background:rgba(255,255,255,.28)}
+.batt .fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#1E5FC8,#4C8BF0);width:10%;position:relative;overflow:hidden}
+.batt .fill:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);animation:sheen 2.4s linear infinite}
+@keyframes sheen{to{transform:translateX(100%)}}
+.batt .ticks{position:absolute;inset:6px;display:flex;justify-content:space-between;pointer-events:none}
+.batt .ticks i{width:1px;background:rgba(255,255,255,.08)}
+.batt .pct{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-weight:300;font-size:56px;letter-spacing:-.04em;color:#fff;mix-blend-mode:normal}
+.scale{display:flex;justify-content:space-between;margin-top:12px;color:rgba(255,255,255,.5)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line-d);padding-top:32px}
+.kv b{display:block;font-weight:300;font-size:44px;letter-spacing:-.04em;line-height:1}
+.kv span{display:block;margin-top:10px;color:rgba(255,255,255,.6);font-size:15px}
+.replay{color:rgba(255,255,255,.7)}
+.replay:hover{color:#7FA8EA}
+
+/* full-bleed */
+.bleed{position:relative;height:min(62vw,1080px);min-height:560px;overflow:hidden;color:#fff;background:var(--navy)}
+.bleed .im{position:absolute;left:0;right:0;top:-12%;height:124%;background:center/cover no-repeat;will-change:transform}
+.bleed:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(7,10,17,.62) 0%,rgba(7,10,17,0) 46%)}
+.bleed .ct{position:absolute;z-index:2;left:var(--side);right:var(--side);bottom:80px}
+.bleed.top:before{background:linear-gradient(180deg,rgba(7,10,17,.66) 0%,rgba(7,10,17,0) 42%)}
+.bleed.top .ct{bottom:auto;top:clamp(96px,9vw,160px)}
+.bleed + .bleed{margin-top:0}
+
+/* conversion layout card */
+.conv{position:absolute;z-index:3;right:var(--side);bottom:80px;width:min(34vw,560px);padding:20px;color:#fff}
+.conv .seg2{display:flex;gap:4px;margin-bottom:16px}
+.conv .seg2 button{flex:1;padding:10px 0;font-size:14px;border-radius:2px;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);transition:all .25s}
+.conv .seg2 button.on{background:#fff;color:var(--ink);border-color:#fff}
+.conv .pv{aspect-ratio:16/9;background:#E3E3E3 center/contain no-repeat;border-radius:2px;transition:opacity .4s}
+.conv .t{margin-top:14px;opacity:.8}
+
+/* ADAS */
+.adas{position:relative;margin-top:80px;height:min(56vw,960px);min-height:520px;overflow:hidden;background:#111}
+.adas .im{position:absolute;inset:0;background:center/cover no-repeat}
+.adas svg.ov{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.adas .lay{opacity:0;transition:opacity .6s var(--ease)}
+.adas .lay.on{opacity:1}
+.adas .tabs{position:absolute;z-index:3;left:var(--side);bottom:48px;display:flex;gap:4px;padding:6px;color:#fff}
+.adas .tabs button{padding:14px 20px;font-size:15px;border-radius:2px;color:rgba(255,255,255,.72);transition:all .25s;text-align:left}
+.adas .tabs button.on{background:rgba(255,255,255,.95);color:var(--ink)}
+.adas .tabs button:not(.on):hover{color:#fff}
+.adas .desc{position:absolute;z-index:3;right:var(--side);bottom:48px;width:min(30vw,440px);padding:20px 24px;color:#fff}
+.adas .desc .mono{opacity:.66;display:block;margin-bottom:8px}
+.pulse{transform-origin:center;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%{opacity:.0}30%{opacity:.9}100%{opacity:0}}
+.dash{stroke-dasharray:14 14;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-28}}
+
+/* gallery */
+.tabs-u{display:flex;gap:32px;margin-top:32px;border-bottom:1px solid var(--line)}
+.tabs-u button{padding:0 0 14px;font-size:18px;color:var(--g600);position:relative;transition:color .25s}
+.tabs-u button.on{color:var(--ink)}
+.tabs-u button.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
+.tabs-u button:not(.on):hover{color:var(--blue)}
+.gal{position:relative;margin-top:40px;aspect-ratio:16/8.4;background:var(--surf);overflow:hidden}
+.gal .g{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transition:opacity .6s var(--ease),transform 1.2s var(--ease);transform:scale(1.03)}
+.gal .g.on{opacity:1;transform:none}
+.gal .g.port{background-size:contain;background-color:#E9E9E8}
+.gal .lbl{position:absolute;left:24px;bottom:24px;z-index:2;color:#fff;padding:10px 14px}
+.gal .nav-btn.prev{left:24px}.gal .nav-btn.next{right:24px}
+.gstrip{display:flex;gap:12px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.gstrip::-webkit-scrollbar{display:none}
+.gstrip button{flex:0 0 calc((100% - 60px)/6);aspect-ratio:3/2;background:center/cover no-repeat;opacity:.5;position:relative;transition:opacity .3s}
+.gstrip button:hover{opacity:.85}
+.gstrip button.on{opacity:1}
+.gstrip button.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--blue)}
+
+/* faq */
+.faq{margin-top:80px;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:32px 0;text-align:left;transition:color .25s}
+.qa button:hover{color:var(--blue)}
+.qa .pm{position:relative;width:16px;height:16px;flex:0 0 16px}
+.qa .pm:before,.qa .pm:after{content:"";position:absolute;left:0;top:7.5px;width:16px;height:1px;background:currentColor;transition:transform .35s var(--ease)}
+.qa .pm:after{transform:rotate(90deg)}
+.qa.open .pm:after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 0 32px;max-width:1080px}
+
+/* find */
+.find{position:relative;height:min(52vw,900px);min-height:600px;color:#fff;overflow:hidden;display:grid;place-items:center;text-align:center;background:var(--navy)}
+.find .im{position:absolute;inset:-6% 0;background:center 60%/cover no-repeat;will-change:transform}
+.find:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 70% at 50% 45%,rgba(7,10,17,.62),rgba(7,10,17,.35) 70%,rgba(7,10,17,.5))}
+.find .ct{position:relative;z-index:2;max-width:880px;padding:0 24px}
+.find .ct .body-l{margin-top:24px;opacity:.86}
+.find .mk{position:relative;display:inline-block;margin-top:40px}
+.menu{position:absolute;left:50%;top:calc(100% + 16px);transform:translate(-50%,8px);width:360px;padding:8px;text-align:left;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s var(--ease)}
+.mk.open .menu{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.menu a{display:flex;justify-content:space-between;padding:14px 16px;border-radius:2px;font-size:16px;transition:background .2s,color .2s}
+.menu a:hover{background:rgba(255,255,255,.08);color:#7FA8EA}
+.menu a span{opacity:.5;font-family:'Geist Mono';font-size:13px}
+
+/* footer */
+footer{background:var(--navy);color:#fff;padding:100px 0 40px}
+footer .top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.4fr;gap:40px}
+footer .logo{width:198px;height:34px}
+footer h5{font-family:'Geist Mono';font-weight:400;font-size:14px;letter-spacing:.04em;color:rgba(255,255,255,.55);margin-bottom:24px}
+footer ul{list-style:none;display:grid;gap:14px;font-size:18px}
+footer ul a{opacity:.9;transition:color .25s}
+footer ul a:hover{color:#7FA8EA}
+footer .nl{border-bottom:1px solid rgba(255,255,255,.3);display:flex;justify-content:space-between;padding:12px 0;font-size:18px}
+footer .nl span{opacity:.5}
+footer .bot{display:flex;justify-content:space-between;align-items:center;margin-top:96px;padding-top:28px;border-top:1px solid var(--line-d);font-size:15px;color:rgba(255,255,255,.66)}
+footer .bot div{display:flex;gap:32px}
+footer .bot a:hover{color:#7FA8EA}
+
+@media (max-width:1100px){
+  .hdr nav{display:none}
+  .sub ul{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .dims,.chg{grid-template-columns:1fr}
+  .hero .ct{flex-direction:column;align-items:flex-start}
+  .conv,.adas .desc{position:relative;right:auto;bottom:auto;width:auto;margin:16px var(--side)}
+  footer .top{grid-template-columns:1fr 1fr}
+  .thumb{width:22%}
+}
+@media (max-width:640px){
+  .hdr{padding:0 20px}
+  .stats{grid-template-columns:1fr}
+  .hero .chips{flex-wrap:wrap}
+  .ver .vals{gap:40px}
+  .kv{grid-template-columns:1fr}
+  .prog button{width:28px}
+  .count{display:none}
+  .adas .tabs{left:12px;right:12px;bottom:12px;overflow-x:auto}
+  .adas .tabs button{padding:10px 12px;font-size:13px;white-space:nowrap}
+  footer .bot{flex-direction:column;align-items:flex-start;gap:20px}
+  footer .bot div{flex-wrap:wrap;gap:12px 20px}
+  .thumb{width:23%}.thumb i{height:56px}.thumb span{font-size:12px}
+  .gstrip button{flex-basis:30%}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER (same as homepage) ============ -->
+<header class="hdr" id="hdr">
+  <a href="#top" aria-label="MAXUS home"><span class="logo">LOGO_SVG</span></a>
+  <nav>
+    <a href="#">About MAXUS</a><a href="#" class="cur">Vehicles</a><a href="#">Safety &amp; Technology</a><a href="#">Sustainability</a><a href="#">Newsroom</a>
+  </nav>
+  <a class="mkt" href="#find"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>Global <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:12px;height:12px"><path d="M6 9l6 6 6-6"/></svg></a>
+</header>
+
+<!-- ============ STICKY SUB NAV ============ -->
+<div class="sub" id="sub">
+  <span class="nm">eDELIVER 9</span>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#look">Design</a></li>
+    <li><a href="#fit">Dimensions</a></li>
+    <li><a href="#space">Loadspace</a></li>
+    <li><a href="#charge">Charging</a></li>
+    <li><a href="#specialist">Conversions</a></li>
+    <li><a href="#cabin">Cabin</a></li>
+    <li><a href="#safety">Safety</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="link" href="#find">Find Your Local MAXUS ARROW</a>
+</div>
+
+<!-- ============ 01 HERO ============ -->
+<section class="hero" id="top">
+  <div class="bg" style="background-image:url(IMG_660)"></div>
+  <div class="ct">
+    <div>
+      <div class="mono eyebrow fade">MAXUS · Electric Large Van</div>
+      <h1 class="display fade f2">eDELIVER 9</h1>
+      <p class="body-l sl fade f3">The van that powers productivity.</p>
+      <div class="links fade f4">
+        <a class="link" href="#find">Find Your Local MAXUS ARROW</a>
+        <a class="link down" href="#overview">Explore eDELIVER 9 ARROW</a>
+      </div>
+    </div>
+  </div>
+  <div class="cue"></div>
+</section>
+
+<!-- ============ 02 OVERVIEW / KEY FIGURES ============ -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Overview</span>
+      <h2 class="h1 rv d1">88 kWh. 150 kW.<br>Electric power for work.<sup>*</sup></h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">The eDELIVER 9 pairs an 88 kWh battery with a front-wheel-drive motor delivering up to 150 kW and 330 Nm. All-electric power, with the loadspace and access of a working van.</p>
+    </div>
+    <div class="stats">
+      <div class="stat rv"><div class="data"><span data-count="88">88</span> kWh<sup>*</sup></div><div class="lbl body-m">Battery capacity for electric work.</div></div>
+      <div class="stat rv d1"><div class="data"><span data-count="11">11</span> m<span class="cu">3</span><sup>*</sup></div><div class="lbl body-m">Space for the daily load.</div></div>
+      <div class="stat rv d2"><div class="data"><span data-count="150">150</span> kW<sup>*</sup></div><div class="lbl body-m">Maximum electric-motor power.</div></div>
+      <div class="stat rv"><div class="data"><span data-count="330">330</span> Nm<sup>*</sup></div><div class="lbl body-m">Maximum motor torque.</div></div>
+      <div class="stat rv d1"><div class="data"><span data-count="253">253</span>°<sup>*</sup></div><div class="lbl body-m">Rear-door hinges for wider access.</div></div>
+      <div class="stat rv d2"><div class="data"><span data-count="51">51</span> min<sup>**</sup></div><div class="lbl body-m">DC charging from 10% to 80%.</div></div>
+    </div>
+    <div class="ov-notes rv">
+      <p class="note">*Figures shown refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Power and torque figures are maximum outputs. Specifications and equipment vary by market and version.</p>
+      <p class="note">**10–80% DC charging: 51 minutes. DC charging power: 90 kW. Actual charging time varies with charger output, battery condition, temperature and other operating conditions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 A CLOSER LOOK (drag to rotate) ============ -->
+<section class="sec look" id="look">
+  <div class="wrap bar">
+    <div class="head">
+      <span class="mono rv">Design</span>
+      <h2 class="h1 rv d1">A closer look at eDELIVER 9.</h2>
+      <p class="body-l muted rv d2">Choose a view, or drag the van to turn it.</p>
+    </div>
+  </div>
+  <div class="stage rv" id="stage">
+    <div class="v mul on" style="background-image:url(IMG_636)" data-deg="0°" data-name="Front"></div>
+    <div class="v" style="background-image:url(IMG_637)" data-deg="45°" data-name="Front three-quarter"></div>
+    <div class="v" style="background-image:url(IMG_639)" data-deg="135°" data-name="From above"></div>
+    <div class="v" style="background-image:url(IMG_638)" data-deg="180°" data-name="Rear"></div>
+    <svg class="ring" viewBox="0 0 1000 120" preserveAspectRatio="none"><ellipse cx="500" cy="60" rx="496" ry="56"/><circle id="ringDot" r="5" cx="500" cy="116"/></svg>
+    <button class="nav-btn prev" aria-label="Previous view">ARROW</button>
+    <button class="nav-btn next" aria-label="Next view">ARROW</button>
+    <div class="dial glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 12a9 9 0 0 1 15.4-6.4M21 12a9 9 0 0 1-15.4 6.4"/><path d="M18.5 2.5v3.6h-3.6M5.5 21.5v-3.6h3.6"/></svg><span class="mono">Drag to rotate</span><span class="deg" id="deg">0°</span></div>
+  </div>
+  <div class="wrap">
+    <div class="thumbs" id="thumbs">
+      <button class="thumb on"><i class="mul" style="background-image:url(IMG_636)"></i><span>Front</span><b class="pr"></b></button>
+      <button class="thumb"><i style="background-image:url(IMG_637)"></i><span>Front three-quarter</span><b class="pr"></b></button>
+      <button class="thumb"><i style="background-image:url(IMG_639)"></i><span>From above</span><b class="pr"></b></button>
+      <button class="thumb"><i style="background-image:url(IMG_638)"></i><span>Rear</span><b class="pr"></b></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 SEE HOW IT FITS ============ -->
+<section class="sec" id="fit">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Dimensions</span>
+      <h2 class="h1 rv d1">See how it fits.</h2>
+      <p class="body-l muted rv d2">Check body dimensions, loadspace and door openings for the version shown.</p>
+    </div>
+    <div class="dims">
+      <div class="bp rv" id="bpSide">
+        <span class="mono">Side view</span><span class="mono hint">Hover to show loadspace</span>
+        <svg viewBox="0 0 1000 486">
+          <g class="grid"><path d="M0 60H1000M0 160H1000M0 260H1000M0 360H1000M100 0V470M300 0V470M500 0V470M700 0V470M900 0V470"/></g>
+          <!-- body -->
+          <path class="ln" d="M70 352 L64 312 Q62 296 74 288 L120 262 Q140 252 156 228 L226 112 Q240 92 262 84 L300 72 Q312 68 330 68 L922 68 Q944 68 948 90 L952 334 Q952 352 934 352 L842 352 A62 62 0 0 0 718 352 L282 352 A62 62 0 0 0 158 352 Z"/>
+          <rect class="cargo" x="352" y="84" width="584" height="252" rx="4"/>
+          <!-- glazing + panels -->
+          <path class="ln2" d="M244 108 L330 100 L330 210 L190 210 Z"/>
+          <path class="ln2" d="M342 72 V346 M560 72 V346 M934 72 V346 M66 300 H150 M342 236 H934"/>
+          <path class="ln2" d="M560 100 H930"/>
+          <path class="ln2" d="M88 286 Q112 282 132 270"/>
+          <circle class="ln" cx="220" cy="352" r="50"/><circle class="ln2" cx="220" cy="352" r="26"/>
+          <circle class="ln" cx="780" cy="352" r="50"/><circle class="ln2" cx="780" cy="352" r="26"/>
+          <path class="ln2" d="M30 402 H980"/>
+          <!-- dims -->
+          <path class="dim" d="M220 416 V428 M780 416 V428 M220 422 H780"/>
+          <text x="500" y="444" text-anchor="middle">Wheelbase · TBC mm</text>
+          <path class="dim" d="M64 456 V468 M952 456 V468 M64 462 H952"/>
+          <text x="508" y="484" text-anchor="middle">Overall length · TBC mm</text>
+          <path class="dim" d="M976 68 H988 M976 402 H988 M982 68 V402"/>
+          <path class="dim-b" d="M352 52 V40 M936 52 V40 M352 46 H936"/>
+          <text class="b" x="644" y="30" text-anchor="middle">Loadspace length · 3,413 mm*</text>
+        </svg>
+      </div>
+      <div class="bp rv d1" id="bpRear">
+        <span class="mono">Rear view</span>
+        <svg viewBox="0 0 500 470">
+          <g class="grid"><path d="M0 60H500M0 160H500M0 260H500M0 360H500M50 0V470M250 0V470M450 0V470"/></g>
+          <path class="ln" d="M96 352 L92 96 Q92 70 118 66 L382 66 Q408 70 408 96 L404 352 Z"/>
+          <rect class="cargo" x="128" y="104" width="244" height="216" rx="3"/>
+          <path class="ln2" d="M250 70 V346 M108 92 H392"/>
+          <rect class="ln2" x="98" y="178" width="18" height="120" rx="3"/><rect class="ln2" x="384" y="178" width="18" height="120" rx="3"/>
+          <rect class="ln" x="86" y="320" width="328" height="40" rx="4"/>
+          <rect class="ln2" x="118" y="360" width="56" height="42" rx="6"/><rect class="ln2" x="326" y="360" width="56" height="42" rx="6"/>
+          <path class="ln2" d="M30 402 H470"/>
+          <path class="dim" d="M86 432 V444 M414 432 V444 M86 438 H414"/>
+          <text x="250" y="462" text-anchor="middle">Overall width · TBC mm</text>
+          <path class="dim" d="M452 66 H464 M452 402 H464 M458 66 V402"/>
+          <text x="440" y="240" text-anchor="middle" transform="rotate(-90 440 240)">Overall height · TBC mm</text>
+          <!-- 253° door swing (top view inset) -->
+          <text class="b" x="250" y="40" text-anchor="middle">Rear doors open to 253°*</text>
+        </svg>
+      </div>
+    </div>
+    <div class="ver">
+      <div class="rv">
+        <div class="h4">L3H2 FWD N1 Cargo Van</div>
+        <div class="vals">
+          <div><div class="data">11 m<span class="cu">3</span><sup>*</sup></div><div class="lbl body-s">Loadspace</div></div>
+          <div><div class="data">3,413 mm<sup>*</sup></div><div class="lbl body-s">Loadspace length</div></div>
+        </div>
+      </div>
+      <div class="seg rv d1" id="verSeg"><button>L2H2</button><button class="on">L3H2</button><button>L3H3</button></div>
+    </div>
+    <p class="note rv" style="margin-top:32px">*Figures shown refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Power and torque figures are maximum outputs. Specifications and equipment vary by market and version.</p>
+  </div>
+</section>
+
+<!-- ============ 05 11 m3 OF WORKING SPACE (carousel) ============ -->
+<section class="sec" id="space" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Loadspace</span>
+      <h2 class="h1 rv d1">11 m<span class="cu">3</span> of working space.<sup>*</sup></h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">A 3,413 mm-long loadspace gives equipment and deliveries room on board. Wide-opening rear doors and cargo lighting help you access the space behind the cabin.</p>
+      <p class="note rv d3">*Figures shown refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Specifications and equipment vary by market and version.</p>
+    </div>
+  </div>
+  <div class="car rv" data-car>
+    <div class="track">
+      <div class="sl on"><div class="im" style="background-image:url(IMG_635)"></div><div class="cap glass"><span class="mono">01 · Loadspace</span><span class="body-s">A flat floor and square sides, lit from above.</span></div></div>
+      <div class="sl"><div class="im" style="background-image:url(IMG_648)"></div><div class="cap glass"><span class="mono">02 · Rear doors</span><span class="body-s">Rear doors open to 253° and fold back against the body.</span></div></div>
+      <div class="sl"><div class="im" style="background-image:url(IMG_637)"></div><div class="cap glass"><span class="mono">03 · Side door</span><span class="body-s">Load from the kerb through the sliding side door.</span></div></div>
+    </div>
+    <div class="wrap ctl"><div class="prog"></div><span class="count"></span><div class="arr"><button class="p" aria-label="Previous">ARROW</button><button class="n" aria-label="Next">ARROW</button></div></div>
+  </div>
+</section>
+
+<!-- ============ 06 CHARGING ============ -->
+<section class="sec dark" id="charge">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Charging</span>
+      <h2 class="h1 rv d1">10–80<span class="pc">%</span> DC charging<br>in 51 minutes.<sup>**</sup></h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">DC and AC charging support different charging routines. Liquid heating and cooling help manage the battery’s temperature as conditions change.</p>
+      <p class="note rv d3" style="color:rgba(255,255,255,.45)">**10–80% DC charging: 51 minutes. DC charging power: 90 kW. Actual charging time varies with charger output, battery condition, temperature and other operating conditions.</p>
+    </div>
+    <div class="chg">
+      <div class="ph rv" style="background-image:url(IMG_655)"><span class="tag glass mono">Image placeholder · charging port, battery and thermal system</span></div>
+      <div class="panel rv d1" id="chgPanel">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="opacity:.6">DC fast charge · simulated</span><button class="link replay" id="replay">Replay ARROW</button></div>
+          <div class="batt"><div class="fill" id="fill"></div><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="pct"><span id="pct">10</span>%</div></div>
+          <div class="scale mono"><span>0</span><span>10%</span><span>50%</span><span>80%</span><span>100%</span></div>
+        </div>
+        <div>
+          <div class="data" style="font-size:clamp(72px,6vw,120px)"><span id="mins">0</span><span style="font-size:.42em;letter-spacing:-.02em"> min</span></div>
+          <p class="muted body-m" style="margin-top:12px">Elapsed time at a 90 kW DC charger.</p>
+        </div>
+        <div class="kv">
+          <div><b>88<span style="display:inline;font-size:.5em;color:#fff;margin:0"> kWh</span></b><span>Battery capacity*</span></div>
+          <div><b>90<span style="display:inline;font-size:.5em;color:#fff;margin:0"> kW</span></b><span>DC charging power**</span></div>
+          <div><b>AC</b><span>For depot and overnight</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 A BASE FOR SPECIALIST WORK ============ -->
+<section class="sec" id="specialist">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Conversions</span>
+      <h2 class="h1 rv d1">A base for specialist work.</h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">Available power take-off interfaces and bodybuilder connections support approved conversions. Match the vehicle and equipment to the work your business needs to do.</p>
+    </div>
+  </div>
+</section>
+<section class="bleed" data-par>
+  <div class="im" style="background-image:url(IMG_667)"></div>
+  <div class="ct"><span class="mono" style="opacity:.75">Example conversion · Minibus</span></div>
+  <div class="conv glass" id="conv">
+    <div class="seg2"><button class="on" data-v="a">Exterior</button><button data-v="b">Seating layout</button></div>
+    <div class="pv" id="convPv" style="background-image:url(IMG_656);background-size:cover"></div>
+    <p class="t body-s">Cargo van, minibus or a body of your own. Talk to your local MAXUS team about approved converters.</p>
+  </div>
+</section>
+<section class="bleed top" data-par>
+  <div class="im" style="background-image:url(IMG_659)"></div>
+  <div class="ct">
+    <h2 class="h1 rv">Deliveries ahead.<br>Electric power on board.</h2>
+  </div>
+</section>
+
+<!-- ============ 08 A CONNECTED PLACE TO WORK ============ -->
+<section class="sec" id="cabin">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Cabin</span>
+      <h2 class="h1 rv d1">A connected place to work.</h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">A column-mounted drive selector, central touchscreen and smartphone connectivity keep driving controls and everyday tools within reach.</p>
+    </div>
+  </div>
+  <div class="car rv" data-car>
+    <div class="track">
+      <div class="sl on"><div class="im" style="background-image:url(IMG_670)"></div><div class="cap glass"><span class="mono">01 · Cockpit</span><span class="body-s">Digital driver display and a column-mounted drive selector.</span></div></div>
+      <div class="sl"><div class="im" style="background-image:url(IMG_669)"></div><div class="cap glass"><span class="mono">02 · Touchscreen</span><span class="body-s">Navigation, media and vehicle settings on the central screen.</span></div></div>
+      <div class="sl"><div class="im" style="background-image:url(IMG_640)"></div><div class="cap glass"><span class="mono">03 · Dashboard</span><span class="body-s">Storage across the dash for paperwork, phones and cups.</span></div></div>
+      <div class="sl"><div class="im" style="background-image:url(IMG_641)"></div><div class="cap glass"><span class="mono">04 · Seating</span><span class="body-s">Three seats across, with room to move between them.</span></div></div>
+    </div>
+    <div class="wrap ctl"><div class="prog"></div><span class="count"></span><div class="arr"><button class="p" aria-label="Previous">ARROW</button><button class="n" aria-label="Next">ARROW</button></div></div>
+  </div>
+</section>
+
+<!-- ============ 09 HELP FOR THE ROAD AHEAD ============ -->
+<section class="sec" id="safety" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Safety</span>
+      <h2 class="h1 rv d1">Help for the road ahead.</h2>
+      <p class="body-l muted rv d2" style="max-width:1080px">Adaptive cruise control, lane-keeping support and automatic emergency braking add assistance as traffic and road conditions change.</p>
+    </div>
+  </div>
+  <div class="adas rv" id="adas">
+    <div class="im" style="background-image:url(IMG_653)"></div>
+    <svg class="ov" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="cone" cx="50%" cy="0%" r="100%"><stop offset="0" stop-color="#4C8BF0" stop-opacity=".6"/><stop offset="1" stop-color="#4C8BF0" stop-opacity="0"/></radialGradient>
+        <linearGradient id="lane" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7FB0FF" stop-opacity=".95"/><stop offset="1" stop-color="#7FB0FF" stop-opacity=".15"/></linearGradient>
+      </defs>
+      <g class="lay on" data-k="acc">
+        <path d="M455 760 L250 1000 L760 1000 L555 760 Z" fill="url(#cone)"/>
+        <g class="pulse"><path d="M420 800 Q505 785 590 800" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+        <g class="pulse" style="animation-delay:.6s"><path d="M380 835 Q505 815 630 835" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+        <g class="pulse" style="animation-delay:1.2s"><path d="M340 870 Q505 845 670 870" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+      </g>
+      <g class="lay" data-k="lka">
+        <path d="M30 852 L262 700" stroke="url(#lane)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M1004 621 C1012 680 1050 745 1125 781 S1250 850 1310 888" stroke="#7FB0FF" stroke-width="8" fill="none" stroke-linecap="round" opacity=".9"/>
+        <g class="pulse"><path d="M30 852 L262 700 M1004 621 C1012 680 1050 745 1125 781 S1250 850 1310 888" stroke="#fff" stroke-width="2" fill="none"/></g>
+      </g>
+      <g class="lay" data-k="aeb">
+        <g class="pulse"><ellipse cx="500" cy="776" rx="90" ry="34" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+        <g class="pulse" style="animation-delay:.5s"><ellipse cx="500" cy="776" rx="170" ry="64" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+        <g class="pulse" style="animation-delay:1s"><ellipse cx="500" cy="776" rx="250" ry="94" stroke="#BFD6FF" stroke-width="2.5" fill="none"/></g>
+        <circle cx="500" cy="776" r="6" fill="#4C8BF0"/>
+      </g>
+    </svg>
+    <div class="tabs glass" id="adasTabs">
+      <button class="on" data-k="acc">Adaptive cruise control</button>
+      <button data-k="lka">Lane-keeping support</button>
+      <button data-k="aeb">Emergency braking</button>
+    </div>
+    <div class="desc glass" id="adasDesc"><span class="mono">Assist</span><span class="body-s">Keeps a set distance to the vehicle ahead, slowing and resuming with traffic.</span></div>
+  </div>
+</section>
+
+<!-- ============ 10 INSIDE AND OUT ============ -->
+<section class="sec" id="gallery" style="background:var(--surf)">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">Gallery</span>
+      <h2 class="h1 rv d1">Inside and out.</h2>
+    </div>
+    <div class="tabs-u rv d2" id="galTabs"><button class="on" data-set="ext">Exterior</button><button data-set="int">Interior</button></div>
+    <div class="gal rv d2" id="gal">
+      <button class="nav-btn prev" aria-label="Previous">ARROW</button>
+      <button class="nav-btn next" aria-label="Next">ARROW</button>
+      <span class="lbl glass mono" id="galLbl"></span>
+    </div>
+    <div class="gstrip" id="gstrip"></div>
+  </div>
+</section>
+
+<!-- ============ 11 FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono rv">FAQ</span>
+      <h2 class="h1 rv d1">More about eDELIVER 9</h2>
+    </div>
+    <div class="faq rv d2">
+      <div class="qa open"><button><span class="h4">Where can I find local specifications?</span><i class="pm"></i></button><div class="ans"><div><p class="body-m muted">Visit your local MAXUS website for the versions, specifications and support available in your market.</p></div></div></div>
+      <div class="qa"><button><span class="h4">Which manual should I use?</span><i class="pm"></i></button><div class="ans"><div><p class="body-m muted">Use the manual for your vehicle’s model year and market. You’ll find it under Manuals &amp; Guides on your local MAXUS website.</p></div></div></div>
+      <div class="qa"><button><span class="h4">How much loadspace does the eDELIVER 9 offer?</span><i class="pm"></i></button><div class="ans"><div><p class="body-m muted">The L3H2 FWD N1 Cargo Van offers 11 m<span class="cu">3</span>, with a loadspace length of 3,413 mm.* Other versions vary.</p></div></div></div>
+      <div class="qa"><button><span class="h4">Can I use AC and DC charging?</span><i class="pm"></i></button><div class="ans"><div><p class="body-m muted">Yes. DC charging at up to 90 kW takes the battery from 10% to 80% in 51 minutes.** AC charging suits depot and overnight routines.</p></div></div></div>
+      <div class="qa"><button><span class="h4">Can the eDELIVER 9 support specialist conversions?</span><i class="pm"></i></button><div class="ans"><div><p class="body-m muted">Yes. Available power take-off interfaces and bodybuilder connections support approved conversions. Your local MAXUS team can put you in touch with converters.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 FIND YOUR eDELIVER 9 ============ -->
+<section class="find" id="find" data-par>
+  <div class="im" style="background-image:url(IMG_665)"></div>
+  <div class="ct">
+    <h2 class="h1 rv">Find your eDELIVER 9.</h2>
+    <p class="body-l rv d1">Explore the versions, availability and support offered in your market.</p>
+    <div class="mk rv d2" id="mk">
+      <button class="link" id="mkBtn">Choose Your Market ARROW</button>
+      <div class="menu glass">
+        <a href="#">United Kingdom <span>UK</span></a>
+        <a href="#">Spain <span>ES</span></a>
+        <a href="#">Germany <span>DE</span></a>
+        <a href="#">Netherlands <span>NL</span></a>
+        <a href="#">Australia <span>AU</span></a>
+        <a href="#">All markets <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (homepage) ============ -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div><span class="logo" style="display:block">LOGO_SVG</span></div>
+      <div><h5>ABOUT</h5><ul><li><a href="#">MAXUS Brand</a></li><li><a href="#">Our Story</a></li><li><a href="#">Global Presence</a></li><li><a href="#">Newsroom</a></li></ul></div>
+      <div><h5>SUPPORT</h5><ul><li><a href="#">Downloadable Assets</a></li><li><a href="#">Manuals &amp; Guides</a></li><li><a href="#">Converter Resources</a></li><li><a href="#">FAQ</a></li><li><a href="#">Glossary</a></li><li><a href="#">Sitemap</a></li></ul></div>
+      <div><h5>CONTACT</h5><ul><li><a href="#">Find your local site</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div><h5>NEWSLETTER</h5><div class="nl"><span>Enter your email</span><a class="link" href="#">Subscribe ARROW</a></div></div>
+    </div>
+    <div class="bot">
+      <div><span>© 2026 SAIC MAXUS</span><a href="#">Accessibility</a><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Notice</a><a href="#">Cookie Settings</a></div>
+      <a href="#find">Choose Your Market ▾</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const hdr=$('#hdr'),sub=$('#sub'),hero=$('.hero');
+requestAnimationFrame(()=>setTimeout(()=>hero.classList.add('ld'),60));
+
+/* header: transparent over hero → hides on scroll down, sub nav takes over */
+let lastY=0;
+function onScroll(){
+  const y=scrollY,h=hero.offsetHeight;
+  hdr.classList.toggle('solid',y>40);
+  const past=y>h-80;
+  sub.classList.toggle('show',past);
+  if(past){const down=y>lastY;hdr.classList.toggle('hide',down);sub.classList.toggle('low',!down)}
+  else{hdr.classList.remove('hide');sub.classList.remove('low')}
+  lastY=y;
+  // parallax
+  $$('[data-par]').forEach(s=>{const r=s.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const p=(r.top+r.height/2-innerHeight/2)/innerHeight;s.querySelector('.im').style.transform=`translateY(${p*-8}%)`});
+  // scrollspy
+  let cur=null;$$('.sub ul a').forEach(a=>{const t=$(a.getAttribute('href'));if(t&&t.getBoundingClientRect().top<innerHeight*.4)cur=a});
+  $$('.sub ul a').forEach(a=>a.classList.toggle('on',a===cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* reveal + count-up */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');io.unobserve(el);
+  $$('[data-count]',el).forEach(c=>{const to=+c.dataset.count,t0=performance.now(),d=1400;const f=t=>{const k=Math.min(1,(t-t0)/d),v=Math.round(to*(1-Math.pow(1-k,3)));c.textContent=v.toLocaleString('en');if(k<1)requestAnimationFrame(f)};c.textContent='0';requestAnimationFrame(f)});
+  if(el.id==='chgPanel')charge();
+}),{threshold:.18});
+$$('.rv,.stat').forEach(el=>io.observe(el));
+
+/* 01 closer look: drag / arrows / thumbs */
+(()=>{const st=$('#stage'),vs=$$('.v',st),th=$$('#thumbs .thumb'),deg=$('#deg'),dot=$('#ringDot');let i=0;
+  const pos=[[500,116],[150,98],[60,40],[500,4]];
+  const go=n=>{i=(n+vs.length)%vs.length;vs.forEach((v,k)=>v.classList.toggle('on',k===i));th.forEach((t,k)=>t.classList.toggle('on',k===i));deg.textContent=vs[i].dataset.deg;dot.setAttribute('cx',pos[i][0]);dot.setAttribute('cy',pos[i][1])};
+  th.forEach((t,k)=>t.onclick=()=>go(k));$('.prev',st).onclick=()=>go(i-1);$('.next',st).onclick=()=>go(i+1);
+  let x0=null,acc=0;st.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;x0=e.clientX;acc=0;st.classList.add('drag');st.setPointerCapture(e.pointerId)});
+  st.addEventListener('pointermove',e=>{if(x0===null)return;acc+=e.clientX-x0;x0=e.clientX;if(Math.abs(acc)>120){go(i+(acc<0?1:-1));acc=0}});
+  const up=()=>{x0=null;st.classList.remove('drag')};st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+})();
+
+/* dimensions: version selector (only L3H2 data confirmed) */
+$$('#verSeg button').forEach(b=>b.onclick=()=>{$$('#verSeg button').forEach(x=>x.classList.toggle('on',x===b));$('#bpSide').classList.add('show');setTimeout(()=>$('#bpSide').classList.remove('show'),1600)});
+
+/* peek carousels */
+$$('[data-car]').forEach(car=>{const tr=$('.track',car),sl=$$('.sl',car),pg=$('.prog',car),ct=$('.count',car);let i=0,tm;
+  sl.forEach((_,k)=>{const b=document.createElement('button');b.innerHTML='<i></i>';b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>go(k);pg.appendChild(b)});
+  const bs=$$('button',pg);
+  function go(n){i=(n+sl.length)%sl.length;const s=sl[i],off=s.offsetLeft-(car.clientWidth-s.offsetWidth)/2;tr.style.transform=`translateX(${-off}px)`;sl.forEach((x,k)=>x.classList.toggle('on',k===i));
+    bs.forEach((b,k)=>{b.classList.remove('on');void b.offsetWidth;if(k===i)b.classList.add('on')});ct.textContent=String(i+1).padStart(2,'0')+' / '+String(sl.length).padStart(2,'0');clearTimeout(tm);tm=setTimeout(()=>go(i+1),6000)}
+  $('.p',car).onclick=()=>go(i-1);$('.n',car).onclick=()=>go(i+1);sl.forEach((s,k)=>s.onclick=()=>k!==i&&go(k));
+  let x0=null;tr.addEventListener('pointerdown',e=>x0=e.clientX);tr.addEventListener('pointerup',e=>{if(x0!==null&&Math.abs(e.clientX-x0)>60)go(i+(e.clientX<x0?1:-1));x0=null});
+  addEventListener('resize',()=>go(i));go(0);
+});
+
+/* charging simulation */
+let chgRaf;function charge(){cancelAnimationFrame(chgRaf);const fill=$('#fill'),pct=$('#pct'),mins=$('#mins'),t0=performance.now(),d=4200;
+  const f=t=>{const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,2);const p=10+70*e;fill.style.width=p+'%';pct.textContent=Math.round(p);mins.textContent=Math.round(51*e);if(k<1)chgRaf=requestAnimationFrame(f)};chgRaf=requestAnimationFrame(f)}
+$('#replay').onclick=charge;
+
+/* conversion card toggle */
+$$('#conv .seg2 button').forEach(b=>b.onclick=()=>{$$('#conv .seg2 button').forEach(x=>x.classList.toggle('on',x===b));const pv=$('#convPv');pv.style.opacity=0;setTimeout(()=>{if(b.dataset.v==='b'){pv.style.backgroundImage='url(IMG_675)';pv.style.backgroundSize='contain'}else{pv.style.backgroundImage='url(IMG_656)';pv.style.backgroundSize='cover'}pv.style.opacity=1},250)});
+
+/* ADAS tabs */
+const adasTxt={acc:['Assist','Keeps a set distance to the vehicle ahead, slowing and resuming with traffic.'],lka:['Lane','Helps keep the van centred when lane markings are visible.'],aeb:['Brake','Watches the road ahead and can brake automatically if a collision is likely.']};
+$$('#adasTabs button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;$$('#adasTabs button').forEach(x=>x.classList.toggle('on',x===b));$$('#adas .lay').forEach(l=>l.classList.toggle('on',l.dataset.k===k));const d=$('#adasDesc');d.children[0].textContent=adasTxt[k][0];d.children[1].textContent=adasTxt[k][1]});
+
+/* gallery */
+const G={ext:[['IMG_644','Front',1],['IMG_643','Grille',0],['IMG_645','LED headlight',1],['IMG_646','Headlight detail',0],['IMG_650','Rear badge',1],['IMG_651','Wheel',1],['IMG_664','Front corner',1],['IMG_657','On the road',0]],
+         int:[['IMG_670','Cockpit',0],['IMG_669','Touchscreen',0],['IMG_640','Dashboard',0],['IMG_641','Seating',0],['IMG_671','Cab',0],['IMG_668','Loadspace',0]]};
+(()=>{const gal=$('#gal'),strip=$('#gstrip'),lbl=$('#galLbl');let set='ext',i=0;
+  function build(){$$('.g',gal).forEach(x=>x.remove());strip.innerHTML='';G[set].forEach(([src,name,port],k)=>{const d=document.createElement('div');d.className='g'+(port?' port':'');d.style.backgroundImage=src;gal.insertBefore(d,lbl);const b=document.createElement('button');b.style.backgroundImage=src;b.setAttribute('aria-label',name);b.onclick=()=>go(k);strip.appendChild(b)});go(0)}
+  function go(n){const L=G[set].length;i=(n+L)%L;$$('.g',gal).forEach((x,k)=>x.classList.toggle('on',k===i));$$('button',strip).forEach((x,k)=>x.classList.toggle('on',k===i));lbl.textContent=String(i+1).padStart(2,'0')+' · '+G[set][i][1]}
+  $('.prev',gal).onclick=()=>go(i-1);$('.next',gal).onclick=()=>go(i+1);
+  $$('#galTabs button').forEach(b=>b.onclick=()=>{set=b.dataset.set;$$('#galTabs button').forEach(x=>x.classList.toggle('on',x===b));build()});build();
+})();
+
+/* faq */
+$$('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+
+/* market menu */
+$('#mkBtn').onclick=e=>{e.stopPropagation();$('#mk').classList.toggle('open')};document.addEventListener('click',()=>$('#mk').classList.remove('open'));
+
+/* ?shot=N : static capture helper for review */
+const q=new URLSearchParams(location.search);if(q.has('static')){document.documentElement.style.scrollBehavior='auto';$$('.rv,.stat').forEach(e=>e.classList.add('in'));hero.classList.add('ld')}
+</script>
+</body>
+</html>
