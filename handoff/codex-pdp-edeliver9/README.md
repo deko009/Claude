@@ -105,10 +105,11 @@ assets/pdp/             ← 本目录图片，原样拷入
 - 脚注：`*26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van, 88 kWh battery.  **DC 90 kW; time varies with charger, battery condition and temperature.  †Price placeholder, set per market.`
 - 交互：切 Tab 时数字计数刷新、名称切换。目前只有 L3H2 的数据，其余版本先显示 `TBC`。
 
-### 02（续）视角舞台（简化版）
-- 左：大图（约 1180×700，圆角 6），默认 `studio-l45-doors-open.jpg`。
-- 右下：当前视角名称（如 `Front three-quarter`）+ `01 / 03` + 360° 图标和 `Drag to rotate`，下面三张视角缩略图（140×140）：Front three-quarter / Rear / From above，当前项不透明并带下划线，其余 55%。
-- 交互：点缩略图切换大图（淡入 0.6s）；在大图上左右拖拽依次切换视角。不再放热点、车门、颜色控件。
+### 02（续）视角舞台（沉浸式）
+- 整屏全宽棚拍图（`studio-l45-doors-open.jpg`，cover），标题和版本 Tab 直接压在图片上方浅灰区；底部加浅色提亮渐变，名称 + 参数行压在图片底部。
+- 右侧竖排三张视角缩略图（112×112，当前项 2px 黑描边）：Front three-quarter / Rear / From above，上方显示视角名和 `01 / 03`，下方是 360° 图标和 `Drag to rotate`。
+- 尺寸轴：车下方虚线 X 轴 `X · Overall length TBC mm`，车左侧虚线 Y 轴 `Y · Overall height TBC mm`，两端带端点刻度。切到非侧前视角时淡出。
+- 交互：点缩略图或在图上拖拽切换视角（交叉淡入 0.6s）。
 
 ### 05 11 m³ of working space.*
 - 左列表（点击切右图，6s 自动轮播，当前项上方蓝色进度线）：
