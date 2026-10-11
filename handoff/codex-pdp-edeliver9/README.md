@@ -231,11 +231,11 @@ assets/pdp/             ← 本目录图片，原样拷入
     - DC 10–80% 51 min**
     - AC charging TBC kW
     - Battery heating and cooling Liquid
-- Dimensions 组右侧：**真实棚拍车图**（`studio-rear.jpg` 裁到车身，圆角 6），下方虚线标 `Width · TBC mm`、右侧虚线标 `Height · TBC mm`。**不用简笔线稿**。拿到侧视棚拍图后，可再加一张侧视图并标注长度。
+- Dimensions 组右侧：**大尺寸真实棚拍图**（`studio-l45-doors-open.jpg`，约 780×450，圆角 6，与 Dimensions 标题顶对齐），下方虚线标 `Overall length · TBC mm`、左侧虚线标 `Overall height · TBC mm`。**不用简笔线稿**。
 - 切换 Tab 时数值淡出淡入；没有数据的显示 `TBC`。
 
 ### 10b Compare versions.（突出差异、行对齐、不重复车图）
-- 外观三个版本相同，**不放三张一样的车图**。
+- 每列表头放车图（目前三个版本先用同一张 `studio-l45-doors-open.jpg`，拿到各版本图后替换），图片同高对齐。
 - 顶部：标题 + 说明 `Every version shares the same design and electric drive. Body length and roof height change what you can carry.`，右上 `Compare all specifications →`
 - 「SAME ON EVERY VERSION」浅灰条：`88 kWh battery*` · `150 kW / 330 Nm motor*` · `90 kW DC charging**` · `Adaptive cruise · Lane-keeping · AEB` · `Central touchscreen`
 - 下方是对比表：左侧一列放行标题，右侧三列是版本。L3H2 列浅蓝底 + 顶部蓝线 + `MOST POPULAR` 标签。**每一行三列严格对齐**，行之间用细线分隔：
