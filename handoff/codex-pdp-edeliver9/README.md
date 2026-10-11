@@ -147,6 +147,11 @@ assets/pdp/             ← 本目录图片，原样拷入
   - 中：`01 / 05`
   - 右：两个圆形箭头按钮（上一张白底；下一张蓝底，hover 蓝）
 - 支持拖拽和触控滑动。
+- **点击「+」弹窗**（Figma：「弹窗｜Details 卡片点击「+」展开」）：
+  - 全屏遮罩（Navy 72% + 轻模糊），中间白色面板 1520×840、圆角 6。
+  - 左：大图（约 960 宽，cover）。右：`01 / 05`、标题（H2）、卡片原句 + 一段补充说明、3 张同部件小图（当前项 2px 黑描边）、底部进度短线 + 上一项 / 下一项圆形按钮（下一项蓝底）。
+  - 右上圆形 × 关闭；点遮罩 / Esc 也关闭；键盘左右键切换 5 项；打开时锁定页面滚动，焦点进入弹窗，关闭后回到原来的「+」。
+  - 动效：遮罩淡入 0.3s，面板从卡片位置放大到居中（0.45s）。
 
 ### 07 A base for specialist work.
 - 文案：`Available power take-off interfaces and bodybuilder connections support approved conversions. Match the vehicle and equipment to the work your business needs to do.`
