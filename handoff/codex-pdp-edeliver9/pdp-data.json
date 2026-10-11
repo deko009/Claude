@@ -1,0 +1,319 @@
+{
+  "meta": {
+    "model": "eDELIVER 9",
+    "modelYear": "26.5MY",
+    "defaultVersion": "L3H2",
+    "currency": "£",
+    "pricePlaceholder": "£XX,XXX"
+  },
+  "footnotes": {
+    "*": "Figures refer to the 26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van with an 88 kWh battery. Power and torque figures are maximum outputs. Specifications vary by market and version.",
+    "**": "10–80% DC charging: 51 minutes at 90 kW. Actual time varies with charger output, battery condition, temperature and other conditions.",
+    "†": "Price placeholder; prices and versions vary by market.",
+    "TBC": "To be confirmed per version and market."
+  },
+  "shared": {
+    "battery_kWh": 88,
+    "power_kW": 150,
+    "torque_Nm": 330,
+    "drive": "Front-wheel drive",
+    "dcPower_kW": 90,
+    "dc10to80_min": 51,
+    "thermal": "Liquid",
+    "seating": "3 seats",
+    "display": "Central touchscreen",
+    "rearDoor_deg": 253
+  },
+  "versions": {
+    "L2H2": {
+      "name": "eDELIVER 9 L2H2",
+      "specsTab": "L2H2 Cargo Van",
+      "label": "Medium length · High roof",
+      "tag": "26.5MY",
+      "popular": false,
+      "loadspace_m3": null,
+      "loadspaceLength_mm": null,
+      "roof": "High",
+      "length_mm": null,
+      "height_mm": null,
+      "width_mm": null,
+      "payload_kg": null,
+      "acPower_kW": null,
+      "price": null,
+      "bestFor": "Urban multi-drop routes and tighter streets.",
+      "image": "studio-front"
+    },
+    "L3H2": {
+      "name": "eDELIVER 9 L3H2",
+      "specsTab": "L3H2 Cargo Van",
+      "label": "Long · High roof",
+      "tag": "MOST POPULAR",
+      "popular": true,
+      "loadspace_m3": 11,
+      "loadspaceLength_mm": 3413,
+      "roof": "High",
+      "length_mm": null,
+      "height_mm": null,
+      "width_mm": null,
+      "payload_kg": null,
+      "acPower_kW": null,
+      "price": null,
+      "bestFor": "Parcel, trade and fleet work that needs more floor length.",
+      "image": "studio-l45-doors-open"
+    },
+    "L3H3": {
+      "name": "eDELIVER 9 L3H3",
+      "specsTab": "L3H3 Cargo Van",
+      "label": "Long · Extra-high roof",
+      "tag": "26.5MY",
+      "popular": false,
+      "loadspace_m3": null,
+      "loadspaceLength_mm": null,
+      "roof": "Extra-high",
+      "length_mm": null,
+      "height_mm": null,
+      "width_mm": null,
+      "payload_kg": null,
+      "acPower_kW": null,
+      "price": null,
+      "bestFor": "Standing-height loading and tall cargo.",
+      "image": "studio-rear"
+    }
+  },
+  "views": [
+    {
+      "name": "Front three-quarter",
+      "image": "studio-l45-doors-open",
+      "showAxes": true
+    },
+    {
+      "name": "Rear",
+      "image": "studio-rear",
+      "showAxes": false
+    },
+    {
+      "name": "From above",
+      "image": "studio-top-view",
+      "showAxes": false
+    }
+  ],
+  "axes": {
+    "x": {
+      "label": "X · Overall length",
+      "from": [
+        0.1875,
+        0.8125
+      ],
+      "y": 0.8125
+    },
+    "y": {
+      "label": "Y · Overall height",
+      "x": 0.156,
+      "from": [
+        0.258,
+        0.781
+      ]
+    }
+  },
+  "loadspace": [
+    {
+      "title": "11 m³ loadspace*",
+      "text": "A 3,413 mm-long loadspace gives equipment and deliveries room on board, with a flat floor and cargo lighting.",
+      "image": "loadspace-interior"
+    },
+    {
+      "title": "Rear doors to 253°*",
+      "text": "Wide-opening rear doors fold back against the body for forklift and pallet access.",
+      "image": "rear-doors-open"
+    },
+    {
+      "title": "Sliding side door",
+      "text": "Load from the kerb and reach the cab without stepping out.",
+      "image": "studio-l45-doors-open"
+    }
+  ],
+  "details": [
+    {
+      "title": "Full LED headlights",
+      "text": "Clear light for early starts and late drops.",
+      "more": "LED lighting gives a bright, even beam on unlit roads and in loading yards. Fitment and lighting functions vary by market and version.",
+      "image": "detail-headlight",
+      "gallery": [
+        "detail-headlight",
+        "gallery-headlight-2",
+        "detail-headlight"
+      ]
+    },
+    {
+      "title": "Chrome-framed grille",
+      "text": "The eDELIVER 9 face, built to take daily wear.",
+      "more": "TBC — awaiting client copy. Fitment varies by market and version.",
+      "image": "detail-grille",
+      "gallery": [
+        "detail-grille",
+        "studio-front",
+        "gallery-front-corner"
+      ]
+    },
+    {
+      "title": "253° rear doors*",
+      "text": "Fold back against the body for pallet loading.",
+      "more": "TBC — awaiting client copy. Fitment varies by market and version.",
+      "image": "rear-doors-open",
+      "gallery": [
+        "rear-doors-open",
+        "studio-rear",
+        "loadspace-interior"
+      ]
+    },
+    {
+      "title": "Steel wheels",
+      "text": "Covers that shrug off kerbs and loading bays.",
+      "more": "TBC — awaiting client copy. Fitment varies by market and version.",
+      "image": "detail-wheel",
+      "gallery": [
+        "detail-wheel",
+        "studio-l45-doors-open",
+        "gallery-front-corner"
+      ]
+    },
+    {
+      "title": "Tall rear lamps",
+      "text": "Seen above the load, day and night.",
+      "more": "TBC — awaiting client copy. Fitment varies by market and version.",
+      "image": "detail-taillight",
+      "gallery": [
+        "detail-taillight",
+        "studio-rear",
+        "rear-doors-open"
+      ]
+    }
+  ],
+  "cabinHotspots": [
+    {
+      "x": 49.8,
+      "y": 35.3,
+      "tag": "01 · Touchscreen",
+      "title": "Central touchscreen",
+      "text": "Navigation, media and vehicle settings, with smartphone connectivity."
+    },
+    {
+      "x": 30.9,
+      "y": 43.6,
+      "tag": "02 · Display",
+      "title": "Digital driver display",
+      "text": "Speed, range and charge level in one clear view."
+    },
+    {
+      "x": 45.8,
+      "y": 47.8,
+      "tag": "03 · Drive selector",
+      "title": "Column-mounted drive selector",
+      "text": "Frees up the space between the seats for a third passenger."
+    },
+    {
+      "x": 74.4,
+      "y": 69.9,
+      "tag": "04 · Seats",
+      "title": "Three seats across",
+      "text": "Room for a crew of three, with storage under the passenger bench."
+    }
+  ],
+  "safety": [
+    {
+      "key": "acc",
+      "title": "Adaptive cruise control",
+      "text": "Keeps a set distance to the vehicle ahead, slowing and resuming with traffic."
+    },
+    {
+      "key": "lka",
+      "title": "Lane-keeping support",
+      "text": "Helps keep the van centred when lane markings are visible."
+    },
+    {
+      "key": "aeb",
+      "title": "Emergency braking",
+      "text": "Watches the road ahead and can brake automatically if a collision is likely."
+    }
+  ],
+  "gallery": {
+    "Exterior": [
+      [
+        "hero-mountain-road",
+        "On the road"
+      ],
+      [
+        "detail-grille",
+        "Grille"
+      ],
+      [
+        "gallery-headlight-2",
+        "Headlight"
+      ],
+      [
+        "detail-taillight",
+        "Rear lamp"
+      ],
+      [
+        "detail-wheel",
+        "Wheel"
+      ],
+      [
+        "gallery-front-corner",
+        "Front corner"
+      ],
+      [
+        "gallery-city-road",
+        "City"
+      ]
+    ],
+    "Interior": [
+      [
+        "cabin-cockpit",
+        "Cockpit"
+      ],
+      [
+        "cabin-touchscreen",
+        "Touchscreen"
+      ],
+      [
+        "cabin-dashboard",
+        "Dashboard"
+      ],
+      [
+        "cabin-seating",
+        "Seating"
+      ],
+      [
+        "gallery-cab",
+        "Cab"
+      ],
+      [
+        "gallery-loadspace-2",
+        "Loadspace"
+      ]
+    ]
+  },
+  "faq": [
+    [
+      "Where can I find local specifications?",
+      "Visit your local MAXUS website for the versions, specifications and support available in your market."
+    ],
+    [
+      "Which manual should I use?",
+      "Use the manual for your vehicle's model year and market. You'll find it under Manuals & Guides on your local MAXUS website."
+    ],
+    [
+      "How much loadspace does the eDELIVER 9 offer?",
+      "The L3H2 FWD N1 Cargo Van offers 11 m³, with a loadspace length of 3,413 mm.* Other versions vary."
+    ],
+    [
+      "Can I use AC and DC charging?",
+      "Yes. DC charging at up to 90 kW takes the battery from 10% to 80% in 51 minutes.** AC charging suits depot and overnight routines."
+    ],
+    [
+      "Can the eDELIVER 9 support specialist conversions?",
+      "Yes. Available power take-off interfaces and bodybuilder connections support approved conversions. Your local MAXUS team can put you in touch with converters."
+    ]
+  ]
+}
