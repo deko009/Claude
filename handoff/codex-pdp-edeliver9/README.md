@@ -105,23 +105,10 @@ assets/pdp/             ← 本目录图片，原样拷入
 - 脚注：`*26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van, 88 kWh battery.  **DC 90 kW; time varies with charger, battery condition and temperature.  †Price placeholder, set per market.`
 - 交互：切 Tab 时数字计数刷新、名称切换。目前只有 L3H2 的数据，其余版本先显示 `TBC`。
 
-### 02（续）360° 舞台（无单独标题）
-- 舞台图：`studio-l45-doors-open.jpg`（默认），另有 `studio-front` / `studio-top-view` / `studio-rear`
-- 顶部 Tab：`Exterior` / `Interior` / `Load floor`
-- 热点（蓝点 + 呼吸光圈，hover 显示提示）：
-  - Sliding side door
-  - LED headlights
-  - 16-inch steel wheels
-  - Rear lamps
-- 底部控制：
-  - 左：`360 view`（文字 + 图标）
-  - 中：Tab `Doors open` / `Doors closed`
-  - 右：颜色色板 + 当前名称。颜色名为占位：Arctic White / Silver / Graphite。
-- 交互：
-  - 鼠标或手指左右拖拽，按 4 个角度切换（参考 Toyota Yaris Cross 360）。
-  - 切换时交叉淡入 0.6s。
-  - 没有车门关闭的图时，先用 `studio-front` 代替。
-- 脚注：`Colour names shown as placeholders; available colours vary by market.`
+### 02（续）视角舞台（简化版）
+- 左：大图（约 1180×700，圆角 6），默认 `studio-l45-doors-open.jpg`。
+- 右下：当前视角名称（如 `Front three-quarter`）+ `01 / 03` + 360° 图标和 `Drag to rotate`，下面三张视角缩略图（140×140）：Front three-quarter / Rear / From above，当前项不透明并带下划线，其余 55%。
+- 交互：点缩略图切换大图（淡入 0.6s）；在大图上左右拖拽依次切换视角。不再放热点、车门、颜色控件。
 
 ### 05 11 m³ of working space.*
 - 左列表（点击切右图，6s 自动轮播，当前项上方蓝色进度线）：
@@ -231,11 +218,11 @@ assets/pdp/             ← 本目录图片，原样拷入
     - DC 10–80% 51 min**
     - AC charging TBC kW
     - Battery heating and cooling Liquid
-- Dimensions 组右侧：**大尺寸真实棚拍图**（`studio-l45-doors-open.jpg`，约 780×450，圆角 6，与 Dimensions 标题顶对齐），下方虚线标 `Overall length · TBC mm`、左侧虚线标 `Overall height · TBC mm`。**不用简笔线稿**。
+- Specs 不放图片。Dimensions 按 5 列网格排（与 Performance 列对齐）。
 - 切换 Tab 时数值淡出淡入；没有数据的显示 `TBC`。
 
 ### 10b Compare versions.（突出差异、行对齐、不重复车图）
-- 每列表头放车图（目前三个版本先用同一张 `studio-l45-doors-open.jpg`，拿到各版本图后替换），图片同高对齐。
+- 每列表头放不同视角车图，同高对齐：L2H2 `studio-front.jpg` / L3H2 `studio-l45-doors-open.jpg` / L3H3 `studio-rear.jpg`（拿到各版本实拍后替换）。
 - 顶部：标题 + 说明 `Every version shares the same design and electric drive. Body length and roof height change what you can carry.`，右上 `Compare all specifications →`
 - 「SAME ON EVERY VERSION」浅灰条：`88 kWh battery*` · `150 kW / 330 Nm motor*` · `90 kW DC charging**` · `Adaptive cruise · Lane-keeping · AEB` · `Central touchscreen`
 - 下方是对比表：左侧一列放行标题，右侧三列是版本。L3H2 列浅蓝底 + 顶部蓝线 + `MOST POPULAR` 标签。**每一行三列严格对齐**，行之间用细线分隔：
