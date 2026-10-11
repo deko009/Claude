@@ -58,8 +58,7 @@ assets/pdp/             ← 本目录图片，原样拷入
 | # | 模块 | 背景 |
 |---|---|---|
 | 01 | 首屏 Hero | 全屏图（深） |
-| 02 | Explore eDELIVER 9（版本 Tab + 正面棚拍 + 参数） | 浅灰棚拍 |
-| 03 | A closer look（360 / 热点 / 车门 / 颜色） | 浅灰 |
+| 02 | Explore eDELIVER 9（版本 Tab + 360° 舞台 + 参数，原 02/03 已合并） | 浅灰 |
 | 05 | 11 m³ of working space（左列表切右图） | 白 |
 | 06 | 充电（全屏图 + 充电面板） | 深 |
 | 06b | Details that do the work（卡片横滑） | 暖灰 `#F2F0ED` |
@@ -91,10 +90,11 @@ assets/pdp/             ← 本目录图片，原样拷入
 - 动效：图片 1.08 → 1 缓慢缩放；标题、底栏按首页的入场节奏淡入上移。
 - 滚动后出现吸顶子导航（见 §5）。
 
-### 02 Explore eDELIVER 9
+### 02 Explore eDELIVER 9（与 03 合并为一屏，避免两屏都是棚拍车的重复）
+> 结构：标题 → 版本 Tab → 下方 03 的 360° 舞台 → 舞台下方名称 + 参数行。不再单独放正面棚拍图。
+
 - 标题 `Explore eDELIVER 9`（居中）
 - Tab：`L2H2` / `L3H2`（默认）/ `L3H3`，首页 Tab 样式
-- 主图：`studio-front.jpg`，浅灰棚拍背景（不是纯白）：中间一条柔和地平线 + 车底软阴影；图片用 `mix-blend-mode:multiply` 融进背景。
 - 左下大字：`eDELIVER 9 L3H2`（随 Tab 变）
 - 右侧一行参数，竖线分隔：
   - `88 kWh*` Battery capacity
@@ -105,7 +105,7 @@ assets/pdp/             ← 本目录图片，原样拷入
 - 脚注：`*26.5MY eDELIVER 9 L3H2 FWD N1 Cargo Van, 88 kWh battery.  **DC 90 kW; time varies with charger, battery condition and temperature.  †Price placeholder, set per market.`
 - 交互：切 Tab 时数字计数刷新、名称切换。目前只有 L3H2 的数据，其余版本先显示 `TBC`。
 
-### 03 A closer look at eDELIVER 9.
+### 02（续）360° 舞台（无单独标题）
 - 舞台图：`studio-l45-doors-open.jpg`（默认），另有 `studio-front` / `studio-top-view` / `studio-rear`
 - 顶部 Tab：`Exterior` / `Interior` / `Load floor`
 - 热点（蓝点 + 呼吸光圈，hover 显示提示）：
@@ -231,27 +231,21 @@ assets/pdp/             ← 本目录图片，原样拷入
     - DC 10–80% 51 min**
     - AC charging TBC kW
     - Battery heating and cooling Liquid
-- 右侧白色线稿侧视图：
-  - 货厢范围用蓝色虚线框标出，标注 `3,413 mm loadspace*`
-  - 车长、车高用虚线尺寸标注
-  - 线稿 SVG 可直接取原型里 `#bpSide` 的路径
+- Dimensions 组右侧：**真实棚拍车图**（`studio-rear.jpg` 裁到车身，圆角 6），下方虚线标 `Width · TBC mm`、右侧虚线标 `Height · TBC mm`。**不用简笔线稿**。拿到侧视棚拍图后，可再加一张侧视图并标注长度。
 - 切换 Tab 时数值淡出淡入；没有数据的显示 `TBC`。
 
-### 10b Compare versions and equipment levels.（参考 Volvo XC90）
-- 3 张卡（L2H2 / L3H2 / L3H3），浅灰底，圆角 6。L3H2 是推荐款：顶部 2px 蓝线 + `MOST POPULAR` 标签；其余标 `26.5MY`。
-- 每卡依次是：
-  - 车图
-  - `eDELIVER 9 L3H2`（版本名为灰色）
-  - `Cargo Van · Long, high roof`
-  - `Starting at £XX,XXX excl. VAT†`
-  - `Included:` 或 `L2H2 features, plus:`
-  - 4 条 ✓ 卖点 + `and more`
-  - `Colours` 色点组
-  - `Interiors` 色点组
-  - `Learn more →`
-- 卡片下方居中：`Compare levels →`（文字链接，**不做实心按钮**）
-- 卖点文案请照抄 Figma 节点 `503:7`。
-- hover：卡片上浮 4px + 阴影。
+### 10b Compare versions.（突出差异、行对齐、不重复车图）
+- 外观三个版本相同，**不放三张一样的车图**。
+- 顶部：标题 + 说明 `Every version shares the same design and electric drive. Body length and roof height change what you can carry.`，右上 `Compare all specifications →`
+- 「SAME ON EVERY VERSION」浅灰条：`88 kWh battery*` · `150 kW / 330 Nm motor*` · `90 kW DC charging**` · `Adaptive cruise · Lane-keeping · AEB` · `Central touchscreen`
+- 下方是对比表：左侧一列放行标题，右侧三列是版本。L3H2 列浅蓝底 + 顶部蓝线 + `MOST POPULAR` 标签。**每一行三列严格对齐**，行之间用细线分隔：
+  - 表头：`eDELIVER 9 L2H2 / L3H2 / L3H3`（版本号灰色）、车身描述（Medium length · High roof 等）、`From £XX,XXX excl. VAT†`
+  - Loadspace（标 `KEY DIFFERENCE`，大数字）：TBC / 11 m³* / TBC
+  - Loadspace length（`KEY DIFFERENCE`，大数字）：TBC / 3,413 mm* / TBC
+  - Roof height：High / High / Extra-high（不同的值旁边加蓝点）
+  - Best for：Urban multi-drop routes and tighter streets. / Parcel, trade and fleet work that needs more floor length. / Standing-height loading and tall cargo.
+  - 最后一行：`Explore L2H2 →` 等文字链接（L3H2 列为蓝色）
+- hover 某一列时，整列浅底高亮。拿到各版本的真实数据和车图后再补；如果车身长度不同，可以在表头加等比例的侧视剪影实拍。
 
 ### 11 FAQ — More about eDELIVER 9
 - 手风琴，第一项默认展开，“+”会旋转成“−”：
