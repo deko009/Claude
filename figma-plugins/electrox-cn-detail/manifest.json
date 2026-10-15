@@ -1,0 +1,8 @@
+{
+  "name": "ELECTRO X 中文版 · 细节优化",
+  "id": "electrox-cn-detail",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page"
+}
