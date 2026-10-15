@@ -4,6 +4,7 @@ ELECTRO X 中文版网站使用的字体。ELECTROX 和 Stolzl 都没有中文�
 
 | 文件 | 字重 | font-weight |
 |---|---|---|
+| HarmonyOS_Sans_SC_Thin.ttf | Thin | 100 |
 | HarmonyOS_Sans_SC_Light.ttf | Light | 300 |
 | HarmonyOS_Sans_SC_Regular.ttf | Regular | 400 |
 | HarmonyOS_Sans_SC_Medium.ttf | Medium | 500 |
